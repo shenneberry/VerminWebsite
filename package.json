@@ -1,0 +1,25 @@
+{
+  "name": "vermin-website",
+  "version": "1.0.0",
+  "description": "People will be able to go on this site and have competitions with monsters whose powers and drawing are assigned and made by the user.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shenneberry/VerminWebsite.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shenneberry/VerminWebsite/issues"
+  },
+  "homepage": "https://github.com/shenneberry/VerminWebsite#readme",
+  "devDependencies": {
+    "express": "^4.16.4"
+  },
+  "dependencies": {
+    "socket.io": "^2.2.0"
+  }
+}
