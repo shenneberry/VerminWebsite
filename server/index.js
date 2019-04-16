@@ -2,7 +2,11 @@ var express = require('express');
 var server = require('http').createServer(handler).listen(4000, function(){
   console.log('listening to request on port 4000')
 });
-var io = require('socket.io')(server);
+
+//sets socket io to work on the server specified
+var socket = require('socket.io');
+var io = socket(server); 
+
 var fs = require('fs');
 
 
@@ -25,12 +29,13 @@ function handler (req, res) {
   });
 }
 console.log(Object.keys(io))
-//client's starts io connection
+//client's starts io connection, a new socket is made, and
+// the callback function defines what to do w/newly created socket
 io.on('connection', function (socket/*bidirectional socket*/) {
   //This emits to either the client or the server depending 
   //on which side this script is being run from
   //In this case, this is being emitted to the client
-    socket.emit('news', { hello: 'world' });
+  socket.emit('news', { hello: 'world' });
   socket.on('my other event', function (data) {
       //listens and log data from client
     console.log(data);
