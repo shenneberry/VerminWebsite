@@ -1,9 +1,70 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>
-<!--pulls client side socke.io script from this url-->
-<script>
-  var socket = io('http://localhost:4000');
-  socket.on('news', function (data) {
-    console.log(data);
-    socket.emit('my other event', { my: 'data' });
-  });
-</script>
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Canvas</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <canvas id='canvas' width="800" height="500" style='border: 1px solid; width: 800px; height: 600px;'>
+        Sory, no browser for u.
+    </canvas>
+    
+    <script type="text/javascript">
+        //var size = prompt('enter the brush size');
+
+        var md = false; 
+        //INITIAL CANVAS SETUP
+        var c = document.getElementById('canvas');
+        c.addEventListener('mousedown', down);
+        c.addEventListener('mouseup', toggledraw);
+        //in this case, the event is the mouse moving
+        c.addEventListener('mousemove', function(evt){
+            var mousePos = getMousePos(c, evt); 
+            //assigns returned variables from the getMousePos
+            var posx = mousePos.x; 
+            var posy = mousePos.y;
+            draw(canvas, posx, posy); 
+        }); 
+
+        //sets the drawing surface width and height to 
+        //whatever is set in the css
+        c.width = c.scrollWidth;
+        c.height = c.scrollHeight;
+
+        //FUNCTIONS
+        function down(){
+            md = true; 
+        }
+        function toggledraw(){
+            md = false; 
+        }
+        function getMousePos(c, evt){
+            //returns the size of an element and its
+            // position related to the viewport
+            // in this case, the canvas
+            var rect = c.getBoundingClientRect();
+            return{
+                x:evt.clientX - rect.left,
+                y:evt.clientY - rect.top
+            }
+        }
+        function draw(c, posx, posy){
+            //get 2d drawing api
+            var ctx = c.getContext('2d');
+            if(md){
+                //c.style.cursor="pointer"; 
+                ctx.fillRect(posx, posy, 4, 4);
+            }
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>
+    <!--pulls client side socket.io script from this url-->
+    <script>
+        var socket = io('http://localhost:4000');
+        socket.on('news', function (data) {
+          console.log(data);
+          socket.emit('my other event', { my: 'data' });
+        });
+    </script>
+</body>

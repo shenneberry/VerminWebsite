@@ -1,8 +1,15 @@
-var server = require('http').createServer(handler)
+var express = require('express'); 
+var server = require('http').createServer(handler).listen(4000, function(){
+  console.log('listening to request on port 4000')
+});
 var io = require('socket.io')(server);
 var fs = require('fs');
-console.log('hello')
-server.listen(4000);
+
+
+//App setup
+var app = express();
+
+
 
 function handler (req, res) {
   fs.readFile(__dirname + '/../client/index.html',
