@@ -5,6 +5,7 @@ var server = require('http').createServer(handler).listen(4000, function(){
 
 //sets socket io to work on the server specified
 var socket = require('socket.io');
+//sets up socket on server side
 var io = socket(server); 
 
 var fs = require('fs');

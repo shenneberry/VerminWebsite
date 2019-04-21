@@ -11,7 +11,7 @@
     <canvas id='canvas' width="800" height="500" style='border: 1px solid; width: 800px; height: 600px;'>
         Sory, no browser for u.
     </canvas>
-    <form action="/server/index.js" method="get">
+    <form action="/server/index.js" method="POST">
         <!--Add option where the user can upload their own image-->
         
         <fieldset>
@@ -59,7 +59,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <input type="submit" value="Seal Your Vermin's Fate">
+                        <input id="submit" type="submit" value="Seal Your Vermin's Fate">
                     </td>
                     <td>
                         <input type="reset" value="Turn Back the Tides of Time and Begin Anew">
@@ -71,4 +71,13 @@
     
     <script type="text/javascript" src="js/verminCanvas.js"></script>   
     <script src="js/submitStickyForm.js"></script>
+
+    <div id="mario-chat">
+        <div id="chat-window">
+            <div id="output"></div>
+        </div>
+        <input id="handle" type="text" placeholder="Handle"/>
+        <input id="message" type="text" placeholder="Message"/>
+        <button id="send">Send</button>
+    </div>
 </body>
