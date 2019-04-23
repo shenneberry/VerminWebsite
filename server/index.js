@@ -1,16 +1,14 @@
 // var fs = require('fs');
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const path = require('path');
+const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/testdb');
-var path = require('path');
-var express = require('express');
-var app = express();//creates an instance of the express object
+const express = require('express');
+const app = express();//creates an instance of the express object
 //declared above. 
-var server = require('http').Server(app);
-var io = require('socket.io')(server);
 
-server.listen(4000);
+
 
 var options = {
   dotfiles: 'ignore',
@@ -27,12 +25,14 @@ var options = {
 //USE methods
 //body-parser middleware
 app.use(bodyParser.json());
+//look at docs for body parser
 app.use(bodyParser.urlencoded({ extended: true})); 
 //sets up a static file directory to refer to. 
 app.use(express.static(path.join(__dirname, '..', 'client')));
 
 //Schema for testdb
-var nameSchema = new mongoose.Schema({
+var evo1Schema = new mongoose.Schema({
+  img: String,
   lifes: 0,
   muscle: 0,
   blast: 0,
@@ -41,11 +41,11 @@ var nameSchema = new mongoose.Schema({
 });
 
 //creates model from Schema
-var User = mongoose.model('User', nameSchema);
+var evo1 = mongoose.model('Evo1', evo1Schema);
 
 //Use express for things that don't have to be updated live
 app.post('/SubmitVermin'/*Refers to form action in html*/, function(req, res){
-   var myData = new User(req.body);
+   var myData = new evo1(req.body);
    myData.save()
    .then(item => {
      res.send("item saved to database");
@@ -56,19 +56,6 @@ app.post('/SubmitVermin'/*Refers to form action in html*/, function(req, res){
 
 });
 
-//client's starts io connection, a new socket is made, and
-//the callback function defines what to do w/newly created socket
-//only use socket for real time updates
-io.on('connection', function (socket/*bidirectional socket*/) {
-  //This emits to either the client or the server depending 
-  //on which side this script is being run from
-  //In this case, this is being emitted to the client
-  console.log('connection set')
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log('received post request');
-    console.log(data);
-    //listens and log data from client
-  });
-});
 
+
+module.exports = app; 
