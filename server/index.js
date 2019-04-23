@@ -1,39 +1,8 @@
 // var fs = require('fs');
-// var express = require('express'); 
-// var socket = require('socket.io');
-
-// //App setup
-// var app = express();
-// var server = app.listen(4000, function(){
-//   console.log('listening to request on nodemon');
-// })
-
-// //Static files. Most static files come from the server side
-// app.use(express.static('client'));//searches for index.html file in client folder
-// //sets up socket on server side
-// var io = socket(server);
-
-
-
-
-// //client's starts io connection, a new socket is made, and
-// // the callback function defines what to do w/newly created socket
-// io.on('connection', function (socket/*bidirectional socket*/) {
-//   //This emits to either the client or the server depending 
-//   //on which side this script is being run from
-//   //In this case, this is being emitted to the client
-//   console.log('received connection');
-//   //test connection
-//   socket.emit('news', { hello: 'world' });
-//   socket.on('post', function(data){
-//     //Save data to MongoDB
-//     console.log('received post'); 
-//   }); 
-//   socket.on('my other event', function (data) {
-//       //listens and log data from client
-//     console.log(data);
-//   });
-// });
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost:27017/testdb');
 var path = require('path');
 var express = require('express');
 var app = express();//creates an instance of the express object
@@ -55,26 +24,51 @@ var options = {
   }
 }
 
+//USE methods
+//body-parser middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true})); 
 //sets up a static file directory to refer to. 
 app.use(express.static(path.join(__dirname, '..', 'client')));
 
-// app.get('/', function (req, res) {
-//   const indexPath = path.join(__dirname, '..', 'client', 'index.html' );
-//   res.sendFile(indexPath);
-// });
+//Schema for testdb
+var nameSchema = new mongoose.Schema({
+  lifes: 0,
+  muscle: 0,
+  blast: 0,
+  guard: 0,
+  fast: 0
+});
+
+//creates model from Schema
+var User = mongoose.model('User', nameSchema);
 
 //Use express for things that don't have to be updated live
 app.post('/SubmitVermin'/*Refers to form action in html*/, function(req, res){
-   
+   var myData = new User(req.body);
+   myData.save()
+   .then(item => {
+     res.send("item saved to database");
+   })
+   .catch(err => {
+     res.status(400).send("unable to save to database");
+   }); 
+
 });
 
+//client's starts io connection, a new socket is made, and
+//the callback function defines what to do w/newly created socket
 //only use socket for real time updates
-io.on('connection', function (socket) {
+io.on('connection', function (socket/*bidirectional socket*/) {
+  //This emits to either the client or the server depending 
+  //on which side this script is being run from
+  //In this case, this is being emitted to the client
   console.log('connection set')
   socket.emit('news', { hello: 'world' });
   socket.on('my other event', function (data) {
     console.log('received post request');
     console.log(data);
+    //listens and log data from client
   });
 });
 
