@@ -23,15 +23,24 @@ var submitBtn = document.getElementById('submit');
 var output = document.getElementById('output');
 
 //Emit events
+submitBtn.onclick = function() {
+  alert(1)
+}
 
-submitBtn.addEventListener('click', function(){  
-    app.post('/server/index.js', (req, res) => {
-        const out = fs.createWriteStream('/../img/test.png');
-        const stream = canvas.createPNGStream(); 
-        stream.pipe(out);
-        out.on('finish', () => console.log('PNG created')); 
-        const lifes = req.body.lifes; 
-        res.end(); 
-    });
+// submitBtn.addEventListener('click', function(){
+//   alert(1);
+  
+//     // socket.emit('post', {
+      
+//     // app.post('server/index.js', (req, res) => {
+//     //     const out = fs.createWriteStream('../img/test.png');
+//     //     const stream = canvas.createPNGStream(); 
+//     //     stream.pipe(out);
+//     //     out.on('finish', () => console.log('PNG created')); 
+//     //     const lifes = req.body.lifes; 
+//     //     res.end(); 
+//     // });
+//     // }) 
+    
 
-});
+// });

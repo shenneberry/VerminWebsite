@@ -16,6 +16,7 @@ var app = express();
 
 
 
+
 function handler (req, res) {
   fs.readFile(__dirname + '/../client/index.html',
   function (err, data) {
@@ -36,7 +37,13 @@ io.on('connection', function (socket/*bidirectional socket*/) {
   //This emits to either the client or the server depending 
   //on which side this script is being run from
   //In this case, this is being emitted to the client
+  console.log('received request');
+  //test connection
   socket.emit('news', { hello: 'world' });
+  socket.on('post', function(data){
+    //Save data to MongoDB
+    console.log('received post'); 
+  }); 
   socket.on('my other event', function (data) {
       //listens and log data from client
     console.log(data);
