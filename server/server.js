@@ -21,3 +21,5 @@ io.on('connection', function (socket/*bidirectional socket*/) {
       //listens and log data from client
     });
   });
+
+  module.exports = app;
