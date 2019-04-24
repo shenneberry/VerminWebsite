@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/testdb');
-const app = require('../../index');
+const express = require('express');
+const router = express.Router();
 
 //Schema for testdb
 var evo1Schema = new mongoose.Schema({
@@ -17,7 +18,7 @@ var evo1Schema = new mongoose.Schema({
   var evo1 = mongoose.model('Evo1', evo1Schema);
   
   //Use express for things that don't have to be updated live
-  app.post('/', function(req, res){
+  router.post('/', function(req, res){
      var myData = new evo1(req.body);
      myData.save()
      .then(item => {
@@ -28,3 +29,5 @@ var evo1Schema = new mongoose.Schema({
      }); 
   
   });
+
+  module.exports = router;
