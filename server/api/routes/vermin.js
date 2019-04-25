@@ -18,8 +18,8 @@ var evo1Schema = new mongoose.Schema({
   var evo1 = mongoose.model('Evo1', evo1Schema);
   
   //Use express for things that don't have to be updated live
-  router.post('/', function(req, res){
-     var myData = new evo1(req.body);
+  router.post('/', (req, res, next) => {  
+    var myData = new evo1(req.body);
      myData.save()
      .then(item => {
        res.send("item saved to database");

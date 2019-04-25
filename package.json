@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "canvas": "^2.4.1",
+    "morgan": "^1.9.1",
     "socket.io": "^2.2.0"
   }
 }
