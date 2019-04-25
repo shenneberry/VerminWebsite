@@ -6,7 +6,7 @@ const app = express();//creates an instance of the express object
 //declared above.
 
 //RouterModules
-const submitVerminModule = require('./api/routes/submitVermin')
+const verminModule = require('./api/routes/vermin')
 
 var options = {
   dotfiles: 'ignore',
@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 //sets up a static file directories to refer to. 
 app.use(express.static(path.join(__dirname, '..', 'client')));
-//app.use(express.static(path.join(__dirname, 'api', 'routes')));
-app.use('/submitVermin', submitVerminModule); 
+//makes sure this url is sent to be processed by submitVermin.js
+app.use('/vermin', verminModule); 
 
 module.exports = app; 
