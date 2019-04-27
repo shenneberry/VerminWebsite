@@ -30,7 +30,7 @@ var options = {
 }
 
 //USE methods middleware
-app.use(morgan('dev')); 
+app.use(morgan('dev'));
 //body-parser middleware
 app.use(bodyParser.json());
 //look at docs for body parser
@@ -51,6 +51,8 @@ app.use((req, res, next) => {
 }); 
 //sets up a static file directories to refer to. 
 app.use(express.static(path.join(__dirname, '..', 'client')));
+//makes sure any requests with /uploads have public access to the uploads folder
+app.use(express.static('/uploads', path.join(__dirname, 'uploads')));
 //makes sure this url is sent to be processed by submitVermin.js
 app.use('/vermin', verminModule);
 

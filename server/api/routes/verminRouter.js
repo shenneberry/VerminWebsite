@@ -1,14 +1,41 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose'); 
+const mongoose = require('mongoose');
+const multer = require('multer');
+const storage = multer.diskStorage({
+  destination: function(req, file, cb){
+      cb(null, './uploads/');
+  },
+  filename: function(req, file, cb){
+      cb(null, file.originalname); 
+  }
+});
+
+constfileFilter = (req, file, cb) => {
+  //reject a file
+  if(file.mimetype === 'image/png'){
+    cb(null, true);
+  } else{
+    cb(null, false); 
+  }
+};
+
+//relative path
+const upload = multer({storage: storage, fileFilter: fileFilter});
+
 
 const evo1 = require('../models/evo1Model'); 
 
 
   
   //Use express for things that don't have to be updated live
-  router.post('/', (req, res, next) => {  
-    var myData = new evo1({
+
+  //Any number of handlers can be called before callback
+  // function starts
+  //upload.single() means you just want to upload a single file
+  router.post('/', upload.single('verminImage'),(req, res, next) => {
+    console.log(req.file);
+    const myData = new evo1({
       _id: new mongoose.Types.ObjectId(),
       lifes: req.body.lifes,
       muscle: req.body.muscle,
