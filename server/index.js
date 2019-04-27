@@ -1,4 +1,11 @@
 // var fs = require('fs');
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb+srv://sdAdmin:' + 'uU0u6wasBq2gPgrL'/*process.env.MONGO_ATLAS_PW*/ + '@vermin-app-goi8v.mongodb.net/test?retryWrites=true',
+  {
+    useNewUrlParser: true
+  }
+);
 const bodyParser = require('body-parser');
 const path = require('path');
 const express = require('express');
@@ -8,7 +15,7 @@ const app = express();//creates an instance of the express object
 const morgan = require('morgan');
 
 //RouterModules
-const verminModule = require('./api/routes/vermin')
+const verminModule = require('./api/routes/verminRouter')
 
 var options = {
   dotfiles: 'ignore',
@@ -40,8 +47,8 @@ app.use((req, res, next) => {
   }
   //next(); allows other routers to take over if
   // if we are not returning and OPTIONS request. 
-  next(); 
-})
+  next();
+}); 
 //sets up a static file directories to refer to. 
 app.use(express.static(path.join(__dirname, '..', 'client')));
 //makes sure this url is sent to be processed by submitVermin.js
@@ -59,11 +66,11 @@ app.use((req, res, next) => {
 //general error handler
 app.use((error, req, res, next) => {
     res.status(error.status || 500);
-    res.json({
-      error: {
-        message: error.message
-      }
-    });
+    // res.json({
+    //   error: {
+    //     message: error.message
+    //   }
+    // });
 });
 
 module.exports = app; 
