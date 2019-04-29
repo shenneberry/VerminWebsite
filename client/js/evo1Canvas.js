@@ -2,7 +2,7 @@
 
 var md = false; 
 //INITIAL CANVAS SETUP
-var c = document.getElementById('canvas');
+var c = document.getElementById('evo1');
 c.addEventListener('mousedown', down);
 c.addEventListener('mouseup', toggledraw);
 //in this case, the event is the mouse moving
@@ -11,7 +11,7 @@ c.addEventListener('mousemove', function(evt){
     //assigns returned variables from the getMousePos
     var posx = mousePos.x; 
     var posy = mousePos.y;
-    draw(canvas, posx, posy); 
+    draw(c, posx, posy); 
 }); 
 
 //sets the drawing surface width and height to 

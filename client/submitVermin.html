@@ -12,53 +12,54 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 </head>
 <body>
-    <div class="header"></div>
-    <h1>Close your eyes, stare deep into your soul</h1>
-    <p>
-        . <br>
-        . <br>
-        . <br>
-        . <br>
-        . <br>
-        . <br>
-        . <br>
-        . <br>
-        . <br>
-        . <br>
-        . <br>
-        . <br>
-        . <br>
-        . <br>
-        . <br>
-        . <br>
-        . <br>
-        . <br>
-        . <br>
-        . <br>
-        . <br>
-        . <br>
-        . <br>
-        . <br>
-        . <br>
-        . <br>
-        . <br>
-        . <br>
-        . <br>
-        . <br>
-        . <br>
-        . <br>
-        . <br>
-        . <br>
-        . <br>
-        . <br>
-    </p>
-    <h1>What do you see on the card?<br><br><br></h1>
+    <div id="intro">
+            <h1>Close your eyes, stare deep into your soul</h1>
+            <p id="dotDotDot">
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+            </p>
+            <h1>What do you see on the card?<br><br><br></h1>
+    </div>
+    
     <h2>Evolution I</h2>
     <form action="/vermin" method="POST"  >
         <!--Enquire: Add option where the user can upload their own image-->
         
-        <canvas id='canvas' width="800" height="500" style='border: 1px solid; width: 800px; height: 600px;'>
-                Sory, no browser for u.
+        <canvas id='evo1' width="800" height="500">
         </canvas>
         <fieldset>
             <legend>Submit Stats</legend>
@@ -113,7 +114,7 @@
                 </tr>
             </table> 
         </fieldset>
-        <canvas id='canvas' width="800" height="500" style='border: 1px solid; width: 800px; height: 600px;'>
+        <canvas id='evo2' width="800" height="500">
                 Sory, no browser for u.
         </canvas>
         <fieldset>
@@ -169,7 +170,7 @@
                 </tr>
             </table> 
         </fieldset>   
-        <canvas id='canvas' width="800" height="500" style='border: 1px solid; width: 800px; height: 600px;'>
+        <canvas id='evo3' width="800" height="500">
                 Sory, no browser for u.
         </canvas>
         <fieldset>
@@ -239,7 +240,9 @@
     </div>
 
     <!--External Javascript File References-->
-    <script type="text/javascript" src="js/verminCanvas.js"></script>
+    <script type="text/javascript" src="js/evo1Canvas.js"></script>
+    <script type="text/javascript" src="js/evo2Canvas.js"></script>
+    <script type="text/javascript" src="js/evo3Canvas.js"></script>
     <script type="text/javascript" src="api/routes/verminRouter.js"></script>
 
     <!--JQuery-->
@@ -247,7 +250,7 @@
         //makes sure that the whole document is read 
         // before loading script
         $("document").ready(function(){
-          $("form").hide().fadeIn(2000); 
+          $("#intro").hide().fadeIn(2000); 
         }); 
     </script>
 </body>
