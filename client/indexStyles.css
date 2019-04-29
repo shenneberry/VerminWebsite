@@ -9,4 +9,39 @@ body{
      top: 50%;
      left: 50%; 
      transform: translate(-50%, -50%);
+     /* display: none; */
+}
+
+h1{
+    font-family: 'Cormorant Unicase', serif;
+}
+
+h2{
+    font-family: 'Cinzel', serif;
+}
+
+#start{
+    font-family: 'Cinzel', serif;
+    transition: 0.3s; 
+}
+
+#start:link{
+    text-decoration: none;
+    font-size: 20px;
+    color: black
+}
+
+#start:visited{
+    text-decoration: none;
+    color: white; 
+}
+
+#start:hover{
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 30px;  
+}
+
+#start:active{
+    text-decoration: none;
 }

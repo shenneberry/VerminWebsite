@@ -9,6 +9,8 @@
         <!--To review, this tag tells the device that we do not want it to 
             shrink our content to fit on the screen.  
             Just display it without shrinking because our content will rearrange itself depending upon the size of the viewport.-->
+        <!--font families-->
+        <link href="https://fonts.googleapis.com/css?family=Cinzel|Cormorant+Unicase" rel="stylesheet">    
         <link rel="stylesheet" href="indexStyles.css">
         <script src="/socket.io/socket.io.js"></script>
         <!--pulls client side socket.io script from this url-->
@@ -21,12 +23,14 @@
             <h1>/V/ermin /V/eekend Tournaments</h1>
             <h2>Hosted by: Hynteberg</h2>
             <h2>Submissions are: <var id="isOpen">Closed</var></h2>
-            <button id="start">Create Life</button>
+            <a href="submitVermin.html" id="start">Create Life</a>
         </div>
         <script>
             //makes sure that the whole document is read 
             // before loading script
             $("document").ready(function(){
+                //fades in text
+                $(".wrapper").hide().fadeIn(2000);
                 //selects id isOpen
                 $("#isOpen").html('Open'); 
             }); 
