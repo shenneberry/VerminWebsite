@@ -1,0 +1,87 @@
+
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Canvas</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <!--pulls client side socket.io script from this url-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <canvas id='canvas' width="800" height="500" style='border: 1px solid; width: 800px; height: 600px;'>
+        Sory, no browser for u.
+    </canvas>
+
+    <form action="/vermin" method="POST"  >
+        <!--Add option where the user can upload their own image-->
+        
+        <fieldset>
+           <legend>Submit Stats</legend>
+           <table>
+                <tr>
+                    <td>
+                       Lifes: 
+                    </td>
+                    <td>
+                        <input type="number" name="lifes" min="1" max="13">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Muscle: 
+                    </td>
+                    <td>
+                        <input type="number" name="muscle" min="1" max="13">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Blast: 
+                    </td>
+                    <td>
+                        <input type="number" name="blast" min="1" max="13">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Guard: 
+                    </td>
+                    <td>
+                        <input type="number" name="guard" min="1" max="13">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Fast: 
+                    </td>
+                    <td>
+                        <input type="number" name="fast" min="1" max="13">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input id="submit" type="submit" value="Seal Your Vermin's Fate">
+                    </td>
+                    <td>
+                        <input type="reset" value="Turn Back the Tides of Time and Begin Anew">
+                    </td>
+                </tr>
+            </table> 
+       </fieldset>   
+    </form>
+    
+    
+
+    <div id="mario-chat">
+        <div id="chat-window">
+            <div id="output"></div>
+        </div>
+        <input id="handle" type="text" placeholder="Handle"/>
+        <input id="message" type="text" placeholder="Message"/>
+        <button id="send">Send</button>
+    </div>
+    <script type="text/javascript" src="/js/verminCanvas.js"></script>
+    <script type="text/javascript" src="/api/routes/verminRouter.js"></script>
+</body>
+</html>
