@@ -1,0 +1,257 @@
+
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Canvas</title>
+    <link rel="stylesheet" href="stylesSubmitVermin.css">
+    <script src="socket.io/socket.io.js"></script>
+    <!--pulls client side socket.io script from this url-->
+    <!--font families-->
+    <link href="https://fonts.googleapis.com/css?family=Cinzel|Cormorant+Unicase" rel="stylesheet">    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+</head>
+<body>
+    <div id="intro">
+            <h1>Close your eyes, stare deep into your soul</h1>
+            <p id="dotDotDot">
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+                . <br>
+            </p>
+            <h1>What do you see on the card?<br><br><br></h1>
+    </div>
+    
+    <h2>Evolution I</h2>
+    <form action="/vermin" method="POST"  >
+        <!--Enquire: Add option where the user can upload their own image-->
+        
+        <canvas id='evo1' width="800" height="500">
+        </canvas>
+        <fieldset>
+            <legend>Submit Stats</legend>
+            <table>
+                <tr>
+                    <td>
+                        Lifes: 
+                    </td>
+                    <td>
+                        <input type="number" name="lifes" min="1" max="13">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Muscle: 
+                    </td>
+                    <td>
+                        <input type="number" name="muscle" min="1" max="13">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Blast: 
+                    </td>
+                    <td>
+                        <input type="number" name="blast" min="1" max="13">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Guard: 
+                    </td>
+                    <td>
+                        <input type="number" name="guard" min="1" max="13">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Fast: 
+                    </td>
+                    <td>
+                        <input type="number" name="fast" min="1" max="13">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input id="submit" type="submit" value="Seal Your Vermin's Fate">
+                    </td>
+                    <td>
+                        <input type="reset" value="Turn Back the Tides of Time and Begin Anew">
+                    </td>
+                </tr>
+            </table> 
+        </fieldset>
+        <canvas id='evo2' width="800" height="500">
+                Sory, no browser for u.
+        </canvas>
+        <fieldset>
+            <legend>Submit Stats</legend>
+            <table>
+                <tr>
+                    <td>
+                        Lifes: 
+                    </td>
+                    <td>
+                        <input type="number" name="lifes" min="1" max="13">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Muscle: 
+                    </td>
+                    <td>
+                        <input type="number" name="muscle" min="1" max="13">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Blast: 
+                    </td>
+                    <td>
+                        <input type="number" name="blast" min="1" max="13">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Guard: 
+                    </td>
+                    <td>
+                        <input type="number" name="guard" min="1" max="13">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Fast: 
+                    </td>
+                    <td>
+                        <input type="number" name="fast" min="1" max="13">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input id="submit" type="submit" value="Seal Your Vermin's Fate">
+                    </td>
+                    <td>
+                        <input type="reset" value="Turn Back the Tides of Time and Begin Anew">
+                    </td>
+                </tr>
+            </table> 
+        </fieldset>   
+        <canvas id='evo3' width="800" height="500">
+                Sory, no browser for u.
+        </canvas>
+        <fieldset>
+            <legend>Submit Stats</legend>
+            <table>
+                <tr>
+                    <td>
+                        Lifes: 
+                    </td>
+                    <td>
+                        <input type="number" name="lifes" min="1" max="13">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Muscle: 
+                    </td>
+                    <td>
+                        <input type="number" name="muscle" min="1" max="13">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Blast: 
+                    </td>
+                    <td>
+                        <input type="number" name="blast" min="1" max="13">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Guard: 
+                    </td>
+                    <td>
+                        <input type="number" name="guard" min="1" max="13">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Fast: 
+                    </td>
+                    <td>
+                        <input type="number" name="fast" min="1" max="13">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input id="submit" type="submit" value="Seal Your Vermin's Fate">
+                    </td>
+                    <td>
+                        <input type="reset" value="Turn Back the Tides of Time and Begin Anew">
+                    </td>
+                </tr>
+            </table> 
+        </fieldset>      
+    </form>
+
+
+
+    <div id="mario-chat">
+        <div id="chat-window">
+            <div id="output"></div>
+        </div>
+        <input id="handle" type="text" placeholder="Handle"/>
+        <input id="message" type="text" placeholder="Message"/>
+        <button id="send">Send</button>
+    </div>
+
+    <!--External Javascript File References-->
+    <script type="text/javascript" src="js/evo1Canvas.js"></script>
+    <script type="text/javascript" src="js/evo2Canvas.js"></script>
+    <script type="text/javascript" src="js/evo3Canvas.js"></script>
+    <script type="text/javascript" src="api/routes/verminRouter.js"></script>
+
+    <!--JQuery-->
+    <script>
+        //makes sure that the whole document is read 
+        // before loading script
+        $("document").ready(function(){
+          $("#intro").hide().fadeIn(2000); 
+        }); 
+    </script>
+</body>
+</html>
