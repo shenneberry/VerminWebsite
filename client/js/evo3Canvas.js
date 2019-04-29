@@ -2,7 +2,7 @@
 
 var md = false; 
 //INITIAL CANVAS SETUP
-var c = document.getElementById('evo3');
+var c = document.getElementById('evo3Canvas');
 c.addEventListener('mousedown', down);
 c.addEventListener('mouseup', toggledraw);
 //in this case, the event is the mouse moving

@@ -34,8 +34,35 @@ h2{
 }
 
 canvas{
-    border: 1px solid white; 
+    border: 3px solid red; 
     width: 800px; 
     height: 600px;
     background-color: white;
 }
+
+fieldset{
+    border: none; 
+}
+
+table{
+   margin-left: auto;
+   margin-right: auto; 
+   padding-left: 250px;
+}
+
+legend{
+    font-family: 'Cinzel', serif;
+    color: white; 
+    font-size: 30px;
+}
+
+td{
+    font-family: 'Cinzel', serif;
+    color: white; 
+}
+
+
+
+
+
+
