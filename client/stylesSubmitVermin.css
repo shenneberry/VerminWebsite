@@ -1,6 +1,12 @@
 
 body{
+    background-image: url('img/buyMyCardsCrop2.png');
+    background-repeat: no-repeat;  
     text-align: center; 
+    background-color: black; 
+    background-position: center; 
+    background-size: contain;
+    background-attachment: fixed;
 }
 .wrapper{
      position: fixed;
@@ -12,12 +18,15 @@ body{
 
 h1{
     font-family: 'Cormorant Unicase', serif;
+    color: white;
 }
 
 h2{
     font-family: 'Cinzel', serif;
+    color: white;
 }
 
 p{
     font-family: 'Cinzel', serif;
+    color: white; 
 }

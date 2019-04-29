@@ -41,7 +41,8 @@ const evo1 = require('../models/evo1Model');
       muscle: req.body.muscle,
       blast: req.body.blast,
       guard: req.body.guard,
-      fast: req.body.fast
+      fast: req.body.fast,
+      evo1Image: req.file.path
     });
      myData
      .save()
