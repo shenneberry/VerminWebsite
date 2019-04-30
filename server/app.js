@@ -62,7 +62,7 @@ app.use(bodyParser.json());
 
 
 app.use(express.static(path.join(__dirname, '..', 'client')));
-app.use(express.static(path.join(__dirname)));
+//app.use(express.static(path.join(__dirname)));
 
 //makes sure any requests with /uploads have public access to the uploads folder
 // app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
