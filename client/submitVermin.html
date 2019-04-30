@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Canvas</title>
     <link rel="stylesheet" href="stylesSubmitVermin.css">
-    <script src="socket.io/socket.io.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <!--pulls client side socket.io script from this url-->
     <!--font families-->
     <link href="https://fonts.googleapis.com/css?family=Cinzel|Cormorant+Unicase" rel="stylesheet">    
@@ -55,10 +55,16 @@
             <h1>What do you see on the card?<br><br><br></h1>
     </div>
     
-    <h2>Evolution I</h2>
+    
     <form action="/vermin" method="POST"  >
         <!--Enquire: Add option where the user can upload their own image-->
-        
+        <h2>Vermin Name</h2><br>
+        <tr>
+            <td>
+                <input type="text" name="verminName"><br>
+            </td>
+        </tr>
+        <h2>Evolution I</h2>
         <canvas id="evo1Canvas" width="800" height="500">
         </canvas>
         <fieldset>
@@ -69,7 +75,7 @@
                         Lifes: 
                     </td>
                     <td>
-                        <input type="number" name="lifes" min="1" max="13">
+                        <input type="number" name="lifes1" min="1" max="13">
                     </td>
                 </tr>
                 <tr>
@@ -77,7 +83,7 @@
                         Muscle: 
                     </td>
                     <td>
-                        <input type="number" name="muscle" min="1" max="13">
+                        <input type="number" name="muscle1" min="1" max="13">
                     </td>
                 </tr>
                 <tr>
@@ -85,7 +91,7 @@
                         Blast: 
                     </td>
                     <td>
-                        <input type="number" name="blast" min="1" max="13">
+                        <input type="number" name="blast1" min="1" max="13">
                     </td>
                 </tr>
                 <tr>
@@ -93,7 +99,7 @@
                         Guard: 
                     </td>
                     <td>
-                        <input type="number" name="guard" min="1" max="13">
+                        <input type="number" name="guard1" min="1" max="13">
                     </td>
                 </tr>
                 <tr>
@@ -101,15 +107,7 @@
                         Fast: 
                     </td>
                     <td>
-                        <input type="number" name="fast" min="1" max="13">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input id="submit" type="submit" value="Seal Your Vermin's Fate">
-                    </td>
-                    <td>
-                        <input type="reset" value="Turn Back the Tides of Time and Begin Anew">
+                        <input type="number" name="fast1" min="1" max="13">
                     </td>
                 </tr>
             </table> 
@@ -125,7 +123,7 @@
                         Lifes: 
                     </td>
                     <td>
-                        <input type="number" name="lifes" min="1" max="13">
+                        <input type="number" name="lifes2" min="1" max="13">
                     </td>
                 </tr>
                 <tr>
@@ -133,7 +131,7 @@
                         Muscle: 
                     </td>
                     <td>
-                        <input type="number" name="muscle" min="1" max="13">
+                        <input type="number" name="muscle2" min="1" max="13">
                     </td>
                 </tr>
                 <tr>
@@ -141,7 +139,7 @@
                         Blast: 
                     </td>
                     <td>
-                        <input type="number" name="blast" min="1" max="13">
+                        <input type="number" name="blast2" min="1" max="13">
                     </td>
                 </tr>
                 <tr>
@@ -149,7 +147,7 @@
                         Guard: 
                     </td>
                     <td>
-                        <input type="number" name="guard" min="1" max="13">
+                        <input type="number" name="guard2" min="1" max="13">
                     </td>
                 </tr>
                 <tr>
@@ -157,15 +155,7 @@
                         Fast: 
                     </td>
                     <td>
-                        <input type="number" name="fast" min="1" max="13">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input id="submit" type="submit" value="Seal Your Vermin's Fate">
-                    </td>
-                    <td>
-                        <input type="reset" value="Turn Back the Tides of Time and Begin Anew">
+                        <input type="number" name="fast2" min="1" max="13">
                     </td>
                 </tr>
             </table> 
@@ -175,13 +165,13 @@
         </canvas>
         <fieldset>
             <legend>Stats</legend>
-            <table id="evo1Stats">
+            <table id="evo3Stats">
                 <tr>
                     <td>
                         Lifes: 
                     </td>
                     <td>
-                        <input type="number" name="lifes" min="1" max="13">
+                        <input type="number" name="lifes3" min="1" max="13">
                     </td>
                 </tr>
                 <tr>
@@ -189,7 +179,7 @@
                         Muscle: 
                     </td>
                     <td>
-                        <input type="number" name="muscle" min="1" max="13">
+                        <input type="number" name="muscle3" min="1" max="13">
                     </td>
                 </tr>
                 <tr>
@@ -197,7 +187,7 @@
                         Blast: 
                     </td>
                     <td>
-                        <input type="number" name="blast" min="1" max="13">
+                        <input type="number" name="blast3" min="1" max="13">
                     </td>
                 </tr>
                 <tr>
@@ -205,7 +195,7 @@
                         Guard: 
                     </td>
                     <td>
-                        <input type="number" name="guard" min="1" max="13">
+                        <input type="number" name="guard3" min="1" max="13">
                     </td>
                 </tr>
                 <tr>
@@ -213,18 +203,18 @@
                         Fast: 
                     </td>
                     <td>
-                        <input type="number" name="fast" min="1" max="13">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input id="submit" type="submit" value="Seal Your Vermin's Fate">
-                    </td>
-                    <td>
-                        <input type="reset" value="Turn Back the Tides of Time and Begin Anew">
+                        <input type="number" name="fast3" min="1" max="13">
                     </td>
                 </tr>
             </table> 
+            <tr>
+                <td>
+                    <input id="submit" type="submit" value="Seal Your Vermin's Fate">
+                </td>
+                <td>
+                    <input type="reset" value="Turn Back the Tides of Time and Begin Anew">
+                </td>
+            </tr>
         </fieldset>      
     </form>
 

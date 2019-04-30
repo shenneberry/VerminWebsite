@@ -23,8 +23,8 @@ constfileFilter = (req, file, cb) => {
 //relative path
 const upload = multer({storage: storage, fileFilter: fileFilter});
 
-
-const evo1 = require('../models/evo1Model'); 
+//Import vermin model
+const verminModel = require('../models/verminModel');
 
 
   
@@ -35,16 +35,36 @@ const evo1 = require('../models/evo1Model');
   //upload.single() means you just want to upload a single file
   router.post('/', upload.single('verminImage'),(req, res, next) => {
     console.log(req.file);
-    const myData = new evo1({
+    const vermin = new verminModel({
       _id: new mongoose.Types.ObjectId(),
-      lifes: req.body.lifes,
-      muscle: req.body.muscle,
-      blast: req.body.blast,
-      guard: req.body.guard,
-      fast: req.body.fast,
-      evo1Image: req.file.path
+      //parses data from url endcoded body
+      name: req.body.verminName,
+      evo1: {
+        evoLevel: 1,
+        lifes: req.body.lifes1,
+        muscle: req.body.muscle1,
+        blast: req.body.blast1,
+        guard: req.body.guard1,
+        fast: req.body.fast1
+      },
+      evo2: {
+        evoLevel: 2,
+        lifes: req.body.lifes2,
+        muscle: req.body.muscle2,
+        blast: req.body.blast2,
+        guard: req.body.guard2,
+        fast: req.body.fast2
+      },
+      evo3: {
+        evoLevel: 3,
+        lifes: req.body.lifes3,
+        muscle: req.body.muscle3,
+        blast: req.body.blast3,
+        guard: req.body.guard3,
+        fast: req.body.fast3
+      }
     });
-     myData
+     vermin
      .save()
      .then(item => {
        console.log(item);
@@ -52,8 +72,9 @@ const evo1 = require('../models/evo1Model');
      .catch(err => console.log(err));
        res.status(201).send("unable to save to database");
     res.status(201).json({
-      createdVermin: myData
-    })
+      message: 'Handling POST requests to /vermin',
+      createdVermin: vermin
+    });
   });
 
   //double colon indicates a variable. 
