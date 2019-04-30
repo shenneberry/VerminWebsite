@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Canvas</title>
     <link rel="stylesheet" href="stylesSubmitVermin.css">
-    <script src="/socket.io/socket.io.js"></script>
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
     <!--pulls client side socket.io script from this url-->
     <!--font families-->
     <link href="https://fonts.googleapis.com/css?family=Cinzel|Cormorant+Unicase" rel="stylesheet">    
@@ -56,7 +56,7 @@
     </div>
     
     
-    <form action="/vermin" method="POST"  >
+    <form id="verminForm" action="/vermin" method="POST"  >
         <!--Enquire: Add option where the user can upload their own image-->
         <h2>Vermin Name</h2><br>
         <tr>
@@ -215,7 +215,10 @@
                     <input type="reset" value="Turn Back the Tides of Time and Begin Anew">
                 </td>
             </tr>
-        </fieldset>      
+        </fieldset> 
+        <input type="hidden" name="stringCanvas1" id="stringCanvas1"/>
+        <input type="hidden" name="stringCanvas2" id="stringCanvas2"/>
+        <input type="hidden" name="stringCanvas3" id="stringCanvas3"/>  
     </form>
 
 
@@ -241,7 +244,28 @@
         // before loading script
         $("document").ready(function(){
           $("#intro").hide().fadeIn(2000); 
-        }); 
+        });
+        //Convert Canvases to PNG
+        const verminForm = document.getElementById('verminForm');
+        verminForm.onsubmit = function(event){ 
+            console.log('function started');   
+            const canvas1Element = document.getElementById('evo1Canvas');
+            const canvas2Element = document.getElementById('evo2Canvas');
+            const canvas3Element = document.getElementById('evo3Canvas');
+            const canvas1String = canvas1Element.toDataURL(); 
+            const canvas2String = canvas2Element.toDataURL();
+            const canvas3String = canvas3Element.toDataURL();
+            //mdn web docs
+            const canvas1HiddenInput = document.getElementById('stringCanvas1');
+            const canvas2HiddenInput = document.getElementById('stringCanvas2');
+            const canvas3HiddenInput = document.getElementById('stringCanvas3');
+            canvas1HiddenInput.value = canvas1String;
+            canvas2HiddenInput.value = canvas2String;
+            canvas3HiddenInput.value = canvas3String; 
+            console.log(canvas1HiddenInput.value)
+            //return true; 
+            event.preventDefault(); 
+        }
     </script>
 </body>
 </html>
