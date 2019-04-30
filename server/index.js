@@ -30,26 +30,35 @@ var options = {
 }
 
 //USE methods middleware
+//Error handling middleware
 app.use(morgan('dev'));
-//body-parser middleware
-app.use(bodyParser.json());
 //look at docs for body parser
+//States that I want to parse url encoded data
 app.use(bodyParser.urlencoded({ extended: true}));
-//Prevents CORS errors
+//body-parser middleware
+//parses the body of a JSON file
+app.use(bodyParser.json());
+//Prevents CORS errors, gives the headers necessary for
+// the client to get access to the server when requested
+//This middleware specifies which headers can be attached to request
 app.use((req, res, next) => {
+
+  //Star means that the origin client url can come from anywhere
   res.header('Access-Control-Allow-Origin', '*'); 
+  //Gives the clients certain headers to allow certain types of access to server
   res.header('Access-Control-Allow-Headers', 
   'Origin, X-Requested-With, Content-Type, Accept, Authorization'
   );
+  //states which methods the browser is allowed to send
   if(req.method === 'OPTIONS'){
     res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET'); 
     return res.status(200).json({}); 
   }
   //next(); allows other routers to take over if
-  // if we are not returning and OPTIONS request. 
+  // if we are not returning an OPTIONS request. 
   next();
 }); 
-//sets up a static file directories to refer to. 
+//sets up a static file directory path to refer to for index.html to be automatically loaded 
 app.use(express.static(path.join(__dirname, '..', 'client')));
 //makes sure any requests with /uploads have public access to the uploads folder
 app.use(express.static('/uploads', path.join(__dirname, 'uploads')));
