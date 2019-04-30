@@ -58,7 +58,7 @@ app.use((req, res, next) => {
   // if we are not returning an OPTIONS request. 
   next();
 }); 
-//sets up a static file directories to refer to. 
+//sets up a static file directory path to refer to for index.html to be automatically loaded 
 app.use(express.static(path.join(__dirname, '..', 'client')));
 //makes sure any requests with /uploads have public access to the uploads folder
 app.use(express.static('/uploads', path.join(__dirname, 'uploads')));

@@ -24,7 +24,7 @@ constfileFilter = (req, file, cb) => {
 const upload = multer({storage: storage, fileFilter: fileFilter});
 
 //Import vermin model
-const verminModel = require('../models/verminModel');
+const VerminModel = require('../models/verminModel');
 
 
   
@@ -35,7 +35,7 @@ const verminModel = require('../models/verminModel');
   //upload.single() means you just want to upload a single file
   router.post('/', upload.single('verminImage'),(req, res, next) => {
     console.log(req.file);
-    const vermin = new verminModel({
+    const vermin = new VerminModel({
       _id: new mongoose.Types.ObjectId(),
       //parses data from url endcoded body
       name: req.body.verminName,
@@ -66,21 +66,23 @@ const verminModel = require('../models/verminModel');
     });
      vermin
      .save()
-     .then(item => {
-       console.log(item);
+     .then(result => {
+       console.log(result);
+       res.status(201).json({
+        message: 'Handling POST requests to /vermin',
+        createdVermin: vermin
+      });
      })
-     .catch(err => console.log(err));
-       res.status(201).send("unable to save to database");
-    res.status(201).json({
-      message: 'Handling POST requests to /vermin',
-      createdVermin: vermin
-    });
+     .catch(err => {
+        console.log(err);
+        res.status(500).json({error: err});
+      });   
   });
 
   //double colon indicates a variable. 
   router.get('/:verminId', (req, res, next) => {
      const id = req.params.verminId;
-      evo1.findById(id)
+      VerminModel.findById(id)
       .exec()
       .then(doc => {
         console.log("From Database", doc);
@@ -88,41 +90,43 @@ const verminModel = require('../models/verminModel');
       })
       .catch(err => {
         console.log(err);
-      })
+        res.status(500).json({error: err});
+      }); 
   });
 
-  router.patch('/:verminId', (req, res, next) => {
-    const id = req.params.verminId;
-    const updateOps = {};
-    for (const ops of req.body){
-      updateOps[ops.propName] = ops.value; 
-    }
-    evo1.update({_id: id}, { $set: updateOps })
-    .exec()
-    .then(result => {
-      console.log(result);
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500); 
-    }); 
-  });
+  //go back to API video to review proper patching
+  // router.patch('/:verminId', (req, res, next) => {
+  //   const id = req.params.verminId;
+  //   const updateOps = {};
+  //   for (const ops of req.body){
+  //     updateOps[ops.propName] = ops.value; 
+  //   }
+  //   VerminModel.update({_id: id}, { $set: updateOps })
+  //   .exec()
+  //   .then(result => {
+  //     console.log(result);
+  //   })
+  //   .catch(err => {
+  //     console.log(err);
+  //     res.status(500); 
+  //   }); 
+  // });
 
-  router.delete('/:verminId', (req, res, next) => {
-      const id = req.params.verminId;
-      evo1.remove({_id: id})
-      .exec()
-      .then(result => {
-        res.status(200);
-      })
-      .catch(err => {
+  // router.delete('/:verminId', (req, res, next) => {
+  //     const id = req.params.verminId;
+  //     evo1.remove({_id: id})
+  //     .exec()
+  //     .then(result => {
+  //       res.status(200);
+  //     })
+  //     .catch(err => {
 
-      }) 
-    });
+  //     }); 
+  //   })
 
 
   router.get('/', (req, res, next) => {
-      evo1.find()
+      VerminModel.find()
       .select ('lifes muscle blast guard fast vermin_id')
       .exec()
       .then(docs => {
@@ -145,6 +149,8 @@ const verminModel = require('../models/verminModel');
       })
       .catch(err => {
         console.log(err);
-      })
+      }); 
   });
+
+
   module.exports = router;

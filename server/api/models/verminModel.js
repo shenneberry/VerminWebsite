@@ -35,4 +35,4 @@ var verminSchema = new mongoose.Schema({
     }
 }); 
 
-module.exports('vermin-module', verminSchema);
+module.exports('VerminModel', verminSchema);
