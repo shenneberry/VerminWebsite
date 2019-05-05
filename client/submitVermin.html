@@ -12,47 +12,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 </head>
 <body>
-    <div id="intro">
-            <h1>Close your eyes, stare deep into your soul</h1>
-            <p id="dotDotDot">
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-            </p>
-            <h1>What do you see on the card?<br><br><br></h1>
+    <div>
+            <h1 id="intro">Close your eyes, stare deep into your soul</h1>
+            <p id="dotDotDot">. . . . . .</p>
+            <h1 id="prompt">What do you see on the card?<br><br><br></h1>
     </div>
     
     
@@ -243,7 +206,64 @@
         //makes sure that the whole document is read 
         // before loading script
         $("document").ready(function(){
-          $("#intro").hide().fadeIn(2000); 
+            $("#intro").hide();
+            $("#dotDotDot").hide();
+            $("#prompt").hide();
+            //$("#verminForm").hide();
+            
+            Intro(); 
+
+            async function Intro(){
+                await fadeInPromise("#intro", 2000);
+                for(let i=0; i<4; i++){
+                    await fadeInPromise("#dotDotDot", 1000);
+                    await fadeOutPromise("#dotDotDot", 1000);
+                }
+                await fadeInPromise("#dotDotDot", 1000);
+                await fadeInPromise("#prompt", 2000);
+            }
+                
+                    
+            
+            function fadeInPromise (selector, durationMS){
+                return new Promise((resolve, reject) => {
+                    $(selector).fadeIn(durationMS, function(){
+                        resolve(); 
+                    });
+                }); 
+            }
+
+            function fadeOutPromise (selector, durationMS){
+                return new Promise((resolve, reject) => {
+                    $(selector).fadeOut(durationMS, function(){
+                        resolve(); 
+                    });
+                }); 
+            }
+           
+            // function introPart1(){
+            //     $("#intro").fadeIn(3000, function(){
+            //         for(i = 1; i <=4; i++){
+            //             $("#dotDotDot").fadeIn(200);
+            //             $("#dotDotDot").fadeOut(2000);
+            //             $("#dotDotDot").fadeIn(2000);     
+            //         }
+            //         console.log("callback finished");
+                    
+            //         console.log("start second function"); 
+            //     }); 
+            //     }
+                // return new Promise((resolve, reject) => {
+                //     setTimeout(() => {
+                //         const gotIt = true;
+                //         if(gotIt){
+                //             resolve(gotIt);
+                //         } else{
+                //             reject(Error("Didn't get it")); 
+                //         }
+                //     }, 1000);
+                // });
+              
         });
         //Convert Canvases to PNG
         const verminForm = document.getElementById('verminForm');
@@ -266,6 +286,8 @@
             //return true; 
             //event.preventDefault(); 
         }
+
+
     </script>
 </body>
 </html>

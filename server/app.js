@@ -20,11 +20,19 @@ mongoose.Promise = global.Promise;
 //RouterModules
 const verminModule = require('./api/routes/verminRouter'); 
 
+//mongoose.connect('mongodb://localhost:27017/testdb', {useNewUrlParser: true});
+
 mongoose.connect('mongodb+srv://dbAdmin:Me69Pyj9nkgNHO7C@vermin-app-2-goi8v.mongodb.net/test?retryWrites=true', 
   {
     useNewUrlParser: true
   }
-); 
+)
+.then(function() {
+  console.log('connected properly');}) 
+.catch((err) => {
+    console.log(err);
+    // process.exit(1);
+  });
 
 //USE methods middleware
 //Error handling middleware

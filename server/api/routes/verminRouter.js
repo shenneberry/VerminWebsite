@@ -28,7 +28,7 @@ const mongoose = require('mongoose');
 // const upload = multer({storage: storage, fileFilter: fileFilter});
 
 //Import vermin model
-const VerminModel = require('../models/verminModel.js');
+var VerminModel = require('../models/verminModel.js');
 
 
   
