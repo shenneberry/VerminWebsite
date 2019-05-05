@@ -1,43 +1,43 @@
-// var fs = require('fs');
-const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb+srv://sdAdmin:' + 'uU0u6wasBq2gPgrL'/*process.env.MONGO_ATLAS_PW*/ + '@vermin-app-goi8v.mongodb.net/test?retryWrites=true',
-  {
-    useNewUrlParser: true
-  }
-);
-const bodyParser = require('body-parser');
-const path = require('path');
 const express = require('express');
 const app = express();//creates an instance of the express object
 //declared above.
-//error handler for HTTP requests
+
+//error handler logging middlewar for HTTP requests
 const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const path = require('path');
+
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+
+
+// .catch((err) => {
+//   console.log(err);
+//   process.exit(1);
+// });
+
 
 //RouterModules
-const verminModule = require('./api/routes/verminRouter')
+const verminModule = require('./api/routes/verminRouter'); 
 
-var options = {
-  dotfiles: 'ignore',
-  etag: false,
-  extensions: ['htm', 'html'],
-  index: false,
-  maxAge: '1d',
-  redirect: false,
-  setHeaders: function (res, path, stat) {
-    res.set('x-timestamp', Date.now())
+//mongoose.connect('mongodb://localhost:27017/testdb', {useNewUrlParser: true});
+
+mongoose.connect('mongodb+srv://dbAdmin:Me69Pyj9nkgNHO7C@vermin-app-2-goi8v.mongodb.net/test?retryWrites=true', 
+  {
+    useNewUrlParser: true
   }
-}
+)
+.then(function() {
+  console.log('connected properly');}) 
+.catch((err) => {
+    console.log(err);
+    // process.exit(1);
+  });
 
 //USE methods middleware
 //Error handling middleware
 app.use(morgan('dev'));
-//look at docs for body parser
-//States that I want to parse url encoded data
-app.use(bodyParser.urlencoded({ extended: true}));
-//body-parser middleware
-//parses the body of a JSON file
-app.use(bodyParser.json());
+
 //Prevents CORS errors, gives the headers necessary for
 // the client to get access to the server when requested
 //This middleware specifies which headers can be attached to request
@@ -57,11 +57,23 @@ app.use((req, res, next) => {
   //next(); allows other routers to take over if
   // if we are not returning an OPTIONS request. 
   next();
-}); 
+});
+
+//look at docs for body parser
+//States that I want to parse url encoded data
+app.use(bodyParser.urlencoded({ extended: true}));
+//body-parser middleware
+//parses the body of a JSON file
+app.use(bodyParser.json());
 //sets up a static file directory path to refer to for index.html to be automatically loaded 
+
+
+
 app.use(express.static(path.join(__dirname, '..', 'client')));
+//app.use(express.static(path.join(__dirname)));
+
 //makes sure any requests with /uploads have public access to the uploads folder
-app.use(express.static('/uploads', path.join(__dirname, 'uploads')));
+// app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 //makes sure this url is sent to be processed by submitVermin.js
 app.use('/vermin', verminModule);
 
@@ -74,14 +86,15 @@ app.use((req, res, next) => {
    next(error); 
 });
 
-//general error handler
+//general error handler for errors thrown from anywhere else in
+// application
 app.use((error, req, res, next) => {
     res.status(error.status || 500);
-    // res.json({
-    //   error: {
-    //     message: error.message
-    //   }
-    // });
+    res.json({
+      error: {
+        message: error.message
+      }
+    });
 });
 
 module.exports = app; 

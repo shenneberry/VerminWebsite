@@ -3,7 +3,7 @@ mongoose.Promise = global.Promise;
 
 
 //Schema for Vermin with all evolutions
-var verminSchema = new mongoose.Schema({
+var verminSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     name: {type: String, required: true},
     evo1: {
@@ -35,4 +35,5 @@ var verminSchema = new mongoose.Schema({
     }
 }); 
 
-module.exports('VerminModel', verminSchema);
+
+module.exports = mongoose.model('Vermin', verminSchema);

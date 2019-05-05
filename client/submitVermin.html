@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Canvas</title>
     <link rel="stylesheet" href="stylesSubmitVermin.css">
-    <script src="/socket.io/socket.io.js"></script>
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
     <!--pulls client side socket.io script from this url-->
     <!--font families-->
     <link href="https://fonts.googleapis.com/css?family=Cinzel|Cormorant+Unicase" rel="stylesheet">    
@@ -12,51 +12,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 </head>
 <body>
-    <div id="intro">
-            <h1>Close your eyes, stare deep into your soul</h1>
-            <p id="dotDotDot">
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-                . <br>
-            </p>
-            <h1>What do you see on the card?<br><br><br></h1>
+    <div>
+            <h1 id="intro">Close your eyes, stare deep into your soul</h1>
+            <p id="dotDotDot">. . . . . .</p>
+            <h1 id="prompt">What do you see on the card?<br><br><br></h1>
     </div>
     
     
-    <form action="/vermin" method="POST"  >
+    <form id="verminForm" action="/vermin" method="POST"  >
         <!--Enquire: Add option where the user can upload their own image-->
         <h2>Vermin Name</h2><br>
         <tr>
@@ -215,7 +178,10 @@
                     <input type="reset" value="Turn Back the Tides of Time and Begin Anew">
                 </td>
             </tr>
-        </fieldset>      
+        </fieldset> 
+        <input type="hidden" name="stringCanvas1" id="stringCanvas1"/>
+        <input type="hidden" name="stringCanvas2" id="stringCanvas2"/>
+        <input type="hidden" name="stringCanvas3" id="stringCanvas3"/>  
     </form>
 
 
@@ -233,15 +199,95 @@
     <script type="text/javascript" src="js/evo1Canvas.js"></script>
     <script type="text/javascript" src="js/evo2Canvas.js"></script>
     <script type="text/javascript" src="js/evo3Canvas.js"></script>
-    <script type="text/javascript" src="api/routes/verminRouter.js"></script>
+    <!-- <script type="text/javascript" src="../server/api/routes/verminRouter.js"></script> -->
 
     <!--JQuery-->
     <script>
         //makes sure that the whole document is read 
         // before loading script
         $("document").ready(function(){
-          $("#intro").hide().fadeIn(2000); 
-        }); 
+            $("#intro").hide();
+            $("#dotDotDot").hide();
+            $("#prompt").hide();
+            //$("#verminForm").hide();
+            
+            Intro(); 
+
+            async function Intro(){
+                await fadeInPromise("#intro", 2000);
+                for(let i=0; i<4; i++){
+                    await fadeInPromise("#dotDotDot", 1000);
+                    await fadeOutPromise("#dotDotDot", 1000);
+                }
+                await fadeInPromise("#dotDotDot", 1000);
+                await fadeInPromise("#prompt", 2000);
+            }
+                
+                    
+            
+            function fadeInPromise (selector, durationMS){
+                return new Promise((resolve, reject) => {
+                    $(selector).fadeIn(durationMS, function(){
+                        resolve(); 
+                    });
+                }); 
+            }
+
+            function fadeOutPromise (selector, durationMS){
+                return new Promise((resolve, reject) => {
+                    $(selector).fadeOut(durationMS, function(){
+                        resolve(); 
+                    });
+                }); 
+            }
+           
+            // function introPart1(){
+            //     $("#intro").fadeIn(3000, function(){
+            //         for(i = 1; i <=4; i++){
+            //             $("#dotDotDot").fadeIn(200);
+            //             $("#dotDotDot").fadeOut(2000);
+            //             $("#dotDotDot").fadeIn(2000);     
+            //         }
+            //         console.log("callback finished");
+                    
+            //         console.log("start second function"); 
+            //     }); 
+            //     }
+                // return new Promise((resolve, reject) => {
+                //     setTimeout(() => {
+                //         const gotIt = true;
+                //         if(gotIt){
+                //             resolve(gotIt);
+                //         } else{
+                //             reject(Error("Didn't get it")); 
+                //         }
+                //     }, 1000);
+                // });
+              
+        });
+        //Convert Canvases to PNG
+        const verminForm = document.getElementById('verminForm');
+        verminForm.onsubmit = function(event){ 
+            console.log('function started');   
+            const canvas1Element = document.getElementById('evo1Canvas');
+            const canvas2Element = document.getElementById('evo2Canvas');
+            const canvas3Element = document.getElementById('evo3Canvas');
+            const canvas1String = canvas1Element.toDataURL(); 
+            const canvas2String = canvas2Element.toDataURL();
+            const canvas3String = canvas3Element.toDataURL();
+            //mdn web docs
+            const canvas1HiddenInput = document.getElementById('stringCanvas1');
+            const canvas2HiddenInput = document.getElementById('stringCanvas2');
+            const canvas3HiddenInput = document.getElementById('stringCanvas3');
+            canvas1HiddenInput.value = canvas1String;
+            canvas2HiddenInput.value = canvas2String;
+            canvas3HiddenInput.value = canvas3String; 
+            console.log(canvas1HiddenInput.value)
+            //return true; 
+            //event.preventDefault(); 
+        }
+
+
     </script>
 </body>
 </html>

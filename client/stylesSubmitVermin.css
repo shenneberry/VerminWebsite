@@ -9,6 +9,10 @@ body{
     background-attachment: fixed;
     color: white;
 }
+
+.intro{
+    height: 40px;
+}
 .wrapper{
      position: fixed;
      top: 50%;

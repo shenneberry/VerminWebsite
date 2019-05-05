@@ -1,46 +1,51 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const multer = require('multer');
-const storage = multer.diskStorage({
-  destination: function(req, file, cb){
-      cb(null, './uploads/');
-  },
-  filename: function(req, file, cb){
-      cb(null, file.originalname); 
-  }
-});
+// const multer = require('multer');
+// const storage = multer.diskStorage({
+//   //defines which folder the file should be stored to
+//   destination: function(req, file, cb){
+//     //Enquire: why should null be passed here?
+//     //Node style callback. Passing a null means no error  
+//     cb(null, './uploads/');
+//   },
+//   //defines how the file should be named
+//   filename: function(req, file, cb){
+//       cb(null, file.originalname); 
+//   }
+// });
 
-constfileFilter = (req, file, cb) => {
-  //reject a file
-  if(file.mimetype === 'image/png'){
-    cb(null, true);
-  } else{
-    cb(null, false); 
-  }
-};
+// const fileFilter = (req, file, cb) => {
+//   //reject a file
+//   if(file.mimetype === 'image/png'){
+//     cb(null, true);
+//   } else{
+//     cb(null, false); 
+//   }
+// };
 
-//relative path
-const upload = multer({storage: storage, fileFilter: fileFilter});
+// //relative path to storage destination w/filters
+// const upload = multer({storage: storage, fileFilter: fileFilter});
 
 //Import vermin model
-const VerminModel = require('../models/verminModel');
+var VerminModel = require('../models/verminModel.js');
 
 
   
   //Use express for things that don't have to be updated live
 
-  //Any number of handlers can be called before callback
+  //Any number of handlers can be executed before callback
   // function starts
   //upload.single() means you just want to upload a single file
-  router.post('/', upload.single('verminImage'),(req, res, next) => {
-    console.log(req.file);
+  router.post('/', (req, res, next) => {
+    console.log(req.body);
     const vermin = new VerminModel({
       _id: new mongoose.Types.ObjectId(),
       //parses data from url endcoded body
       name: req.body.verminName,
       evo1: {
         evoLevel: 1,
+        evo1Image: req.body.stringCanvas1,
         lifes: req.body.lifes1,
         muscle: req.body.muscle1,
         blast: req.body.blast1,
@@ -49,6 +54,7 @@ const VerminModel = require('../models/verminModel');
       },
       evo2: {
         evoLevel: 2,
+        evo2Image: req.body.stringCanvas2,
         lifes: req.body.lifes2,
         muscle: req.body.muscle2,
         blast: req.body.blast2,
@@ -57,6 +63,7 @@ const VerminModel = require('../models/verminModel');
       },
       evo3: {
         evoLevel: 3,
+        evo3Image: req.body.stringCanvas3,
         lifes: req.body.lifes3,
         muscle: req.body.muscle3,
         blast: req.body.blast3,
@@ -64,19 +71,21 @@ const VerminModel = require('../models/verminModel');
         fast: req.body.fast3
       }
     });
+    console.log('alert1'); 
      vermin
      .save()
      .then(result => {
        console.log(result);
-       res.status(201).json({
+        res.status(200).json({
         message: 'Handling POST requests to /vermin',
         createdVermin: vermin
       });
      })
      .catch(err => {
         console.log(err);
-        res.status(500).json({error: err});
-      });   
+         res.status(500).json({error: err});
+      }); 
+      // next();   
   });
 
   //double colon indicates a variable. 
@@ -150,6 +159,7 @@ const VerminModel = require('../models/verminModel');
       .catch(err => {
         console.log(err);
       }); 
+      next();
   });
 
 
