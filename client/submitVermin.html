@@ -199,7 +199,7 @@
     </div>
 
     <div class="sidebar">
-        <input type="color" id="canvasColor" name="canvasColor">
+        <input type="color" id="canvasColorPicker" name="canvasColorPicker" value="#ff0080">
     </div>
 
 
@@ -207,6 +207,7 @@
         
 
     <!--External Javascript File References-->
+    <script type="text/javascript" src="js/canvasColorPicker.js"></script>
     <script type="text/javascript" src="js/evo1Canvas.js"></script>
     <script type="text/javascript" src="js/evo2Canvas.js"></script>
     <script type="text/javascript" src="js/evo3Canvas.js"></script>
@@ -302,25 +303,25 @@
 
 
         //Canvas Brush Color Assigner
-        var colorWell;
-        var defaultColor = "#0000ff";
+        // var colorWell;
+        // var defaultColor = "#0000ff";
 
-        window.addEventListener("load", startup, false);
+        // window.addEventListener("load", startup, false);
 
-        function startup() {
-            colorWell = document.querySelector("#canvasColor");
-            colorWell.value = defaultColor;
-            colorWell.addEventListener("input", updateFirst, false);
-            colorWell.addEventListener("change", updateAll, false);
-            colorWell.select();
-        }
+        // function startup() {
+        //     colorWell = document.querySelector("#canvasColor");
+        //     colorWell.value = defaultColor;
+        //     colorWell.addEventListener("input", updateFirst, false);
+        //     colorWell.addEventListener("change", updateAll, false);
+        //     colorWell.select();
+        // }
 
-        function updateFirst(event){
-            var canvas = document.querySelector("canvas")
-            if(canvas){
+        // function updateFirst(event){
+        //     var canvas = document.querySelector("canvas")
+        //     if(canvas){
 
-            }
-        }
+        //     }
+        // }
 
 
 

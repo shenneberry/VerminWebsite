@@ -53,8 +53,9 @@ function draw(evo1Canvas, posx, posy){
 */
 
 window.addEventListener("load", () => {
-    const canvas = document.querySelector("#evo1Canvas");
-    const ctx = canvas.getContext("2d");
+     
+    const evo1Canvas = document.querySelector("#evo1Canvas");
+    const evo1Ctx = evo1Canvas.getContext("2d");
     let painting = false; 
 
     function startPosition(e){
@@ -64,21 +65,37 @@ window.addEventListener("load", () => {
     }
     function finishedPosition(){
         painting = false;
-        ctx.beginPath();
+        evo1Ctx.beginPath();
     }
 
     function draw(e){
         if(!painting) return;
-        ctx.lineWidth = 10;
-        ctx.lineCap = 'round';
-        ctx.lineTo(e.clientX, e.clientY);
-        ctx.strokeStyle = "blue"; 
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(e.clientX, e.clientY);
+        var canvasColorPicker = document.getElementById("canvasColorPicker");
+        evo1Ctx.lineWidth = 10;
+        evo1Ctx.lineCap = 'round';
+        evo1Ctx.lineTo(e.clientX, e.clientY);
+        evo1Ctx.strokeStyle = canvasColorPicker.value; 
+        evo1Ctx.stroke();
+        evo1Ctx.beginPath();
+        evo1Ctx.moveTo(e.clientX, e.clientY);
     }
 
-    canvas.addEventListener("mousedown", startPosition);
-    canvas.addEventListener("mouseup", finishedPosition);
-    canvas.addEventListener("mousemove", draw)
+    evo1Canvas.addEventListener("mousedown", startPosition);
+    evo1Canvas.addEventListener("mouseup", finishedPosition);
+    evo1Canvas.addEventListener("mousemove", draw); 
 });
+
+
+
+// You can export the variable from first file using export.
+
+// //first.js
+// const colorCode = {
+//     black: "#000",
+//     white: "#fff"
+// };
+// export { colorCode };
+// Then, import the variable in second file using import.
+
+// //second.js
+// import { colorCode } from './first.js'
