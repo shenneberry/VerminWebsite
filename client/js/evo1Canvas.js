@@ -1,5 +1,7 @@
 
 
+/*script one
+
 var md = false; 
 //INITIAL CANVAS SETUP
 var evo1Canvas = document.getElementById('evo1Canvas');
@@ -40,7 +42,43 @@ function draw(evo1Canvas, posx, posy){
     //get 2d drawing api
     var ctx = evo1Canvas.getContext('2d');
     if(md){
-        //c.style.cursor="pointer"; 
-        ctx.fillRect(posx, posy, 4, 4);
+        //c.style.cursor="pointer";
+        ctx.fillStyle="green";
+        ctx.fillRect(posx, posy, 20, 20);
+        console.log("brush size and color applied");
+          
     }
 }
+
+*/
+
+window.addEventListener("load", () => {
+    const canvas = document.querySelector("#evo1Canvas");
+    const ctx = canvas.getContext("2d");
+    let painting = false; 
+
+    function startPosition(e){
+
+        painting = true;
+        draw(e); 
+    }
+    function finishedPosition(){
+        painting = false;
+        ctx.beginPath();
+    }
+
+    function draw(e){
+        if(!painting) return;
+        ctx.lineWidth = 10;
+        ctx.lineCap = 'round';
+        ctx.lineTo(e.clientX, e.clientY);
+        ctx.strokeStyle = "blue"; 
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(e.clientX, e.clientY);
+    }
+
+    canvas.addEventListener("mousedown", startPosition);
+    canvas.addEventListener("mouseup", finishedPosition);
+    canvas.addEventListener("mousemove", draw)
+});

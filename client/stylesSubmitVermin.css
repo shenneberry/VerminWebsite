@@ -8,11 +8,10 @@ body{
     background-size: contain;
     background-attachment: fixed;
     color: white;
+    width: 100%;
 }
 
-.intro{
-    height: 40px;
-}
+
 .wrapper{
      position: fixed;
      top: 50%;
@@ -65,7 +64,17 @@ td{
     color: white; 
 }
 
+.main-col{
+    float: left;
+    width: 70%;
+}
 
+.sidebar{
+    background: #333;
+    color: #000000; 
+    float: right;
+    width: 30%;
+}
 
 
 

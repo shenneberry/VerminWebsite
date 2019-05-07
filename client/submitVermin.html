@@ -9,191 +9,202 @@
     <!--font families-->
     <link href="https://fonts.googleapis.com/css?family=Cinzel|Cormorant+Unicase" rel="stylesheet">    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://unpkg.com/vanilla-picker@2"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> -->
 </head>
 <body>
-    <div>
-            <h1 id="intro">Close your eyes, stare deep into your soul</h1>
-            <p id="dotDotDot">. . . . . .</p>
-            <h1 id="prompt">What do you see on the card?<br><br><br></h1>
-    </div>
-    
-    
-    <form id="verminForm" action="/vermin" method="POST"  >
-        <!--Enquire: Add option where the user can upload their own image-->
-        <h2>Vermin Name</h2><br>
-        <tr>
-            <td>
-                <input type="text" name="verminName"><br>
-            </td>
-        </tr>
-        <h2>Evolution I</h2>
-        <canvas id="evo1Canvas" width="800" height="500">
-        </canvas>
-        <fieldset>
-            <legend>Stats</legend>
-            <table id="evo1Stats">
-                <tr>
-                    <td>
-                        Lifes: 
-                    </td>
-                    <td>
-                        <input type="number" name="lifes1" min="1" max="13">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Muscle: 
-                    </td>
-                    <td>
-                        <input type="number" name="muscle1" min="1" max="13">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Blast: 
-                    </td>
-                    <td>
-                        <input type="number" name="blast1" min="1" max="13">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Guard: 
-                    </td>
-                    <td>
-                        <input type="number" name="guard1" min="1" max="13">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Fast: 
-                    </td>
-                    <td>
-                        <input type="number" name="fast1" min="1" max="13">
-                    </td>
-                </tr>
-            </table> 
-        </fieldset>
-        <canvas id='evo2Canvas' width="800" height="500">
-                Sory, no browser for u.
-        </canvas>
-        <fieldset>
-            <legend>Stats</legend>
-            <table id="evo2Stats">
-                <tr>
-                    <td>
-                        Lifes: 
-                    </td>
-                    <td>
-                        <input type="number" name="lifes2" min="1" max="13">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Muscle: 
-                    </td>
-                    <td>
-                        <input type="number" name="muscle2" min="1" max="13">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Blast: 
-                    </td>
-                    <td>
-                        <input type="number" name="blast2" min="1" max="13">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Guard: 
-                    </td>
-                    <td>
-                        <input type="number" name="guard2" min="1" max="13">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Fast: 
-                    </td>
-                    <td>
-                        <input type="number" name="fast2" min="1" max="13">
-                    </td>
-                </tr>
-            </table> 
-        </fieldset>   
-        <canvas id='evo3Canvas' width="800" height="500">
-                Sory, no browser for u.
-        </canvas>
-        <fieldset>
-            <legend>Stats</legend>
-            <table id="evo3Stats">
-                <tr>
-                    <td>
-                        Lifes: 
-                    </td>
-                    <td>
-                        <input type="number" name="lifes3" min="1" max="13">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Muscle: 
-                    </td>
-                    <td>
-                        <input type="number" name="muscle3" min="1" max="13">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Blast: 
-                    </td>
-                    <td>
-                        <input type="number" name="blast3" min="1" max="13">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Guard: 
-                    </td>
-                    <td>
-                        <input type="number" name="guard3" min="1" max="13">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Fast: 
-                    </td>
-                    <td>
-                        <input type="number" name="fast3" min="1" max="13">
-                    </td>
-                </tr>
-            </table> 
+    <div class="main-col">
+        <div>
+                <h1 id="intro">Close your eyes, stare deep into your soul</h1>
+                <p id="dotDotDot">. . . . . .</p>
+                <h1 id="prompt">What do you see on the card?<br><br><br></h1>
+        </div>
+        
+        
+        <form id="verminForm" action="/vermin" method="POST"  >
+            <!--Enquire: Add option where the user can upload their own image-->
+            <h2>Vermin Name</h2><br>
             <tr>
                 <td>
-                    <input id="submit" type="submit" value="Seal Your Vermin's Fate">
-                </td>
-                <td>
-                    <input type="reset" value="Turn Back the Tides of Time and Begin Anew">
+                    <input type="text" name="verminName"><br>
                 </td>
             </tr>
-        </fieldset> 
-        <input type="hidden" name="stringCanvas1" id="stringCanvas1"/>
-        <input type="hidden" name="stringCanvas2" id="stringCanvas2"/>
-        <input type="hidden" name="stringCanvas3" id="stringCanvas3"/>  
-    </form>
+            <h2>Evolution I</h2>
+            <canvas id="evo1Canvas" width="800" height="500">
+            </canvas>
+            <fieldset>
+                <legend>Stats</legend>
+                <table id="evo1Stats">
+                    <tr>
+                        <td>
+                            Lifes: 
+                        </td>
+                        <td>
+                            <input type="number" name="lifes1" min="1" max="13">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Muscle: 
+                        </td>
+                        <td>
+                            <input type="number" name="muscle1" min="1" max="13">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Blast: 
+                        </td>
+                        <td>
+                            <input type="number" name="blast1" min="1" max="13">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Guard: 
+                        </td>
+                        <td>
+                            <input type="number" name="guard1" min="1" max="13">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Fast: 
+                        </td>
+                        <td>
+                            <input type="number" name="fast1" min="1" max="13">
+                        </td>
+                    </tr>
+                </table> 
+            </fieldset>
+            <canvas id='evo2Canvas' width="800" height="500">
+                    Sory, no browser for u.
+            </canvas>
+            <fieldset>
+                <legend>Stats</legend>
+                <table id="evo2Stats">
+                    <tr>
+                        <td>
+                            Lifes: 
+                        </td>
+                        <td>
+                            <input type="number" name="lifes2" min="1" max="13">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Muscle: 
+                        </td>
+                        <td>
+                            <input type="number" name="muscle2" min="1" max="13">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Blast: 
+                        </td>
+                        <td>
+                            <input type="number" name="blast2" min="1" max="13">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Guard: 
+                        </td>
+                        <td>
+                            <input type="number" name="guard2" min="1" max="13">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Fast: 
+                        </td>
+                        <td>
+                            <input type="number" name="fast2" min="1" max="13">
+                        </td>
+                    </tr>
+                </table> 
+            </fieldset>   
+            <canvas id='evo3Canvas' width="800" height="500">
+                    Sory, no browser for u.
+            </canvas>
+            <fieldset>
+                <legend>Stats</legend>
+                <table id="evo3Stats">
+                    <tr>
+                        <td>
+                            Lifes: 
+                        </td>
+                        <td>
+                            <input type="number" name="lifes3" min="1" max="13">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Muscle: 
+                        </td>
+                        <td>
+                            <input type="number" name="muscle3" min="1" max="13">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Blast: 
+                        </td>
+                        <td>
+                            <input type="number" name="blast3" min="1" max="13">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Guard: 
+                        </td>
+                        <td>
+                            <input type="number" name="guard3" min="1" max="13">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Fast: 
+                        </td>
+                        <td>
+                            <input type="number" name="fast3" min="1" max="13">
+                        </td>
+                    </tr>
+                </table> 
+                <tr>
+                    <td>
+                        <input id="submit" type="submit" value="Seal Your Vermin's Fate">
+                    </td>
+                    <td>
+                        <input type="reset" value="Turn Back the Tides of Time and Begin Anew">
+                    </td>
+                </tr>
+            </fieldset> 
+            <input type="hidden" name="stringCanvas1" id="stringCanvas1"/>
+            <input type="hidden" name="stringCanvas2" id="stringCanvas2"/>
+            <input type="hidden" name="stringCanvas3" id="stringCanvas3"/>  
+        </form>
 
 
 
-    <div id="mario-chat">
-        <div id="chat-window">
-            <div id="output"></div>
+        <div id="mario-chat">
+            <div id="chat-window">
+                <div id="output"></div>
+            </div>
+            <input id="handle" type="text" placeholder="Handle"/>
+            <input id="message" type="text" placeholder="Message"/>
+            <button id="send">Send</button>
         </div>
-        <input id="handle" type="text" placeholder="Handle"/>
-        <input id="message" type="text" placeholder="Message"/>
-        <button id="send">Send</button>
     </div>
+
+    <div class="sidebar">
+        <input type="color" id="canvasColor" name="canvasColor">
+    </div>
+
+
+
+        
 
     <!--External Javascript File References-->
     <script type="text/javascript" src="js/evo1Canvas.js"></script>
@@ -203,12 +214,35 @@
 
     <!--JQuery-->
     <script>
+
+        
+        /*
+        Create a new Picker instance and set the parent element.
+        By default, the color picker is a popup which appears when you click the parent.
+    */
+    // var parent = document.querySelector('#parent');
+    // var picker = new Picker(parent);
+
+    /*
+        You can do what you want with the chosen color using two callbacks: onChange and onDone.
+    */
+    // picker.onChange = function(color) {
+    //     parent.style.background = color.rgbaString;
+    // };
+
+    /* onDone is similar to onChange, but only called when you click 'Ok' */
+
+
         //makes sure that the whole document is read 
         // before loading script
         $("document").ready(function(){
+            // $("#palette").spectrum({
+            //     color: "#f00"   
+            // });
             $("#intro").hide();
             $("#dotDotDot").hide();
             $("#prompt").hide();
+
             //$("#verminForm").hide();
             
             Intro(); 
@@ -265,6 +299,31 @@
                 // });
               
         });
+
+
+        //Canvas Brush Color Assigner
+        var colorWell;
+        var defaultColor = "#0000ff";
+
+        window.addEventListener("load", startup, false);
+
+        function startup() {
+            colorWell = document.querySelector("#canvasColor");
+            colorWell.value = defaultColor;
+            colorWell.addEventListener("input", updateFirst, false);
+            colorWell.addEventListener("change", updateAll, false);
+            colorWell.select();
+        }
+
+        function updateFirst(event){
+            var canvas = document.querySelector("canvas")
+            if(canvas){
+
+            }
+        }
+
+
+
         //Convert Canvases to PNG
         const verminForm = document.getElementById('verminForm');
         verminForm.onsubmit = function(event){ 
@@ -291,3 +350,16 @@
     </script>
 </body>
 </html>
+
+<!-- You can export the variable from first file using export.
+
+//first.js
+const colorCode = {
+    black: "#000",
+    white: "#fff"
+};
+export { colorCode };
+Then, import the variable in second file using import.
+
+//second.js
+import { colorCode } from './first.js' -->
