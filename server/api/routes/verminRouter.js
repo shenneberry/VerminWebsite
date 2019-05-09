@@ -93,13 +93,14 @@ var VerminModel = require('../models/verminModel.js');
       var vermin64String = req.body.stringCanvas1; 
       vermin64String = vermin64String.split(';base64,').pop();
 
-      fs.writeFile('/uploads/testPNG.png', vermin64String, {encoding: 'base64'}, function(err) {
+      //fs.mkdirSync('uploads3');
+      fs.writeFile('./uploads/testPNG2.png', vermin64String, {encoding: 'base64'}, function(err) {
         if(err){
           return console.log(err);
         }
         console.log("file was saved"); 
       });
-      // next();   
+      next();   
   });
 
   //double colon indicates a variable. 
