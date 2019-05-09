@@ -1,3 +1,4 @@
+const fs = require('fs');
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
@@ -71,7 +72,8 @@ var VerminModel = require('../models/verminModel.js');
         fast: req.body.fast3
       }
     });
-    console.log('alert1'); 
+    console.log('alert1');
+
      vermin
      .save()
      .then(result => {
@@ -85,6 +87,18 @@ var VerminModel = require('../models/verminModel.js');
         console.log(err);
          res.status(500).json({error: err});
       }); 
+
+      //convert png strings to pngs and save to 
+      // 'uploads' directory
+      var vermin64String = req.body.stringCanvas1; 
+      vermin64String = vermin64String.split(';base64,').pop();
+
+      fs.writeFile('/uploads/testPNG.png', vermin64String, {encoding: 'base64'}, function(err) {
+        if(err){
+          return console.log(err);
+        }
+        console.log("file was saved"); 
+      });
       // next();   
   });
 

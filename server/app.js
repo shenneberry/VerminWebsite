@@ -1,3 +1,4 @@
+const fs = require('fs'); 
 const express = require('express');
 const app = express();//creates an instance of the express object
 //declared above.
@@ -20,19 +21,19 @@ mongoose.Promise = global.Promise;
 //RouterModules
 const verminModule = require('./api/routes/verminRouter'); 
 
-//mongoose.connect('mongodb://localhost:27017/testdb', {useNewUrlParser: true});
+mongoose.connect('mongodb://localhost:27017/testdb', {useNewUrlParser: true});
 
-mongoose.connect('mongodb+srv://dbAdmin:Me69Pyj9nkgNHO7C@vermin-app-2-goi8v.mongodb.net/test?retryWrites=true', 
-  {
-    useNewUrlParser: true
-  }
-)
-.then(function() {
-  console.log('connected properly');}) 
-.catch((err) => {
-    console.log(err);
-    // process.exit(1);
-  });
+// mongoose.connect('mongodb+srv://dbAdmin:Me69Pyj9nkgNHO7C@vermin-app-2-goi8v.mongodb.net/test?retryWrites=true', 
+//   {
+//     useNewUrlParser: true
+//   }
+// )
+// .then(function() {
+//   console.log('connected properly');}) 
+// .catch((err) => {
+//     console.log(err);
+//     // process.exit(1);
+//   });
 
 //USE methods middleware
 //Error handling middleware
@@ -70,12 +71,13 @@ app.use(bodyParser.json());
 
 
 app.use(express.static(path.join(__dirname, '..', 'client')));
+//app.use(express.static(path.join(__dirname, 'uploads')));
 //app.use(express.static(path.join(__dirname)));
 
 //makes sure any requests with /uploads have public access to the uploads folder
 // app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 //makes sure this url is sent to be processed by submitVermin.js
-app.use('/vermin', verminModule);
+app.use('/vermin', verminModule, express.static(path.join(__dirname, 'uploads')));
 
 //error to be sent to error handler function below if
 // request makes it past all specified url handlers above.
