@@ -3,6 +3,7 @@ const app = require('./app.js');
 const port = process.env.PORT || 4000;
 const server = http.createServer(app);
 server.listen(port);
+const cronJob = require('cron').CronJob; 
 // var io = require('socket.io')(server);
  
  
@@ -23,4 +24,7 @@ server.listen(port);
 //     });
 //   });
 
- 
+ new cronJob('*/5 * * * * *', function(){
+     console.log("starting cron");
+
+ }, null, true, 'America/Los_Angeles'); 

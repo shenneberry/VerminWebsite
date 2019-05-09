@@ -94,7 +94,7 @@ var VerminModel = require('../models/verminModel.js');
       vermin64String = vermin64String.split(';base64,').pop();
 
       //fs.mkdirSync('uploads3');
-      fs.writeFile('./uploads/testPNG2.png', vermin64String, {encoding: 'base64'}, function(err) {
+      fs.writeFile('./uploads/testPNG3.png', vermin64String, {encoding: 'base64'}, function(err) {
         if(err){
           return console.log(err);
         }

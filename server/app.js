@@ -3,6 +3,8 @@ const express = require('express');
 const app = express();//creates an instance of the express object
 //declared above.
 
+const cronJob = require('cron').CronJob;  
+
 //error handler logging middlewar for HTTP requests
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
