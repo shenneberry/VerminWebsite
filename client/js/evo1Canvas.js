@@ -68,22 +68,41 @@ window.addEventListener("load", () => {
         evo1Ctx.beginPath();
     }
 
-    function draw(e){
+    function draw(e, posx, posy){
         if(!painting) return;
         var canvasColorPicker = document.getElementById("canvasColorPicker");
         evo1Ctx.lineWidth = 10;
         evo1Ctx.lineCap = 'round';
-        evo1Ctx.lineTo(e.clientX, e.clientY);
+        evo1Ctx.lineTo(posx, posy);//e.clientX, e.clientY);
         evo1Ctx.strokeStyle = canvasColorPicker.value; 
         evo1Ctx.stroke();
         evo1Ctx.beginPath();
-        evo1Ctx.moveTo(e.clientX, e.clientY);
+        evo1Ctx.moveTo(posx, posy);//e.clientX, e.clientY);
     }
+
+    function getMousePos(evo1Canvas, evt){
+        //returns the size of an element and its
+        // position related to the viewport
+        // in this case, the canvas
+        var rect = evo1Canvas.getBoundingClientRect();
+        return{
+            x:evt.clientX - rect.left,
+            y:evt.clientY - rect.top
+        }
+    }
+    
 
     evo1Canvas.addEventListener("mousedown", startPosition);
     evo1Canvas.addEventListener("mouseup", finishedPosition);
-    evo1Canvas.addEventListener("mousemove", draw); 
+    evo1Canvas.addEventListener("mousemove", function(evt){
+        var mousePos = getMousePos(evo1Canvas, evt); 
+        //assigns returned variables from the getMousePos
+        var posx = mousePos.x; 
+        var posy = mousePos.y;
+        draw(evo1Canvas, posx, posy); 
+    }); 
 });
+
 
 
 

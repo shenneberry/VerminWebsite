@@ -2,6 +2,10 @@ const fs = require('fs');
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+
+const path = require('path');
+
+
 // const multer = require('multer');
 // const storage = multer.diskStorage({
 //   //defines which folder the file should be stored to
@@ -31,7 +35,7 @@ const mongoose = require('mongoose');
 //Import vermin model
 var VerminModel = require('../models/verminModel.js');
 
-
+var curTourDirName= path.join(__dirname, '..', '..', '..', 'vermin-pics', 'tournament1'); 
   
   //Use express for things that don't have to be updated live
 
@@ -90,17 +94,93 @@ var VerminModel = require('../models/verminModel.js');
 
       //convert png strings to pngs and save to 
       // 'uploads' directory
-      var vermin64String = req.body.stringCanvas1; 
-      vermin64String = vermin64String.split(';base64,').pop();
+      
+      
+      if(!fs.existsSync(curTourDirName)){
+        fs.mkdirSync(curTourDirName);
+        //var checkEvo1File = req.body.verminName + '.png'; 
+        
 
-      //fs.mkdirSync('uploads3');
-      fs.writeFile('./uploads/testPNG3.png', vermin64String, {encoding: 'base64'}, function(err) {
-        if(err){
-          return console.log(err);
+      }else{
+        var verminNameCheckPath = path.join(__dirname, '..', '..', '..', 'vermin-pics', 'tournament1', req.body.verminName);
+        if(!fs.existsSync(verminNameCheckPath)){
+          fs. mkdirSync(verminNameCheckPath);
+          var checkEvo1FilePath = path.join(__dirname, '..', '..', '..', 'vermin-pics', 'tournament1', req.body.verminName, 'evo1.png');
+          try{
+            if(!fs.existsSync(checkEvo1FilePath)){
+              var canvas164String = req.body.stringCanvas1; 
+              canvas164String = canvas164String.split(';base64,').pop();
+              fs.writeFile(checkEvo1FilePath, canvas164String, {encoding: 'base64'}, function(err) {
+                  if(err){
+                    return console.log(err);
+                  }
+                  console.log("file was saved"); 
+              });
+            }else{
+              console.log("can't create file!");
+            }
+          } catch(err){
+            console.error(err);
+          }
+
+          var checkEvo2FilePath = path.join(__dirname, '..', '..', '..', 'vermin-pics', 'tournament1', req.body.verminName, 'evo2.png');
+          try{
+            if(!fs.existsSync(checkEvo2FilePath)){
+              var canvas264String = req.body.stringCanvas2; 
+              canvas264String = canvas264String.split(';base64,').pop();
+              fs.writeFile(checkEvo2FilePath, canvas264String, {encoding: 'base64'}, function(err) {
+                  if(err){
+                    return console.log(err);
+                  }
+                  console.log("file was saved"); 
+              });
+            }else{
+              console.log("can't create file!");
+            }
+          } catch(err){
+            console.error(err);
+          }
+
+          var checkEvo3FilePath = path.join(__dirname, '..', '..', '..', 'vermin-pics', 'tournament1', req.body.verminName, 'evo3.png');
+          try{
+            if(!fs.existsSync(checkEvo3FilePath)){
+              var canvas364String = req.body.stringCanvas3; 
+              canvas364String = canvas364String.split(';base64,').pop();
+              fs.writeFile(checkEvo3FilePath, canvas364String, {encoding: 'base64'}, function(err) {
+                  if(err){
+                    return console.log(err);
+                  }
+                  console.log("file was saved"); 
+              });
+            }else{
+              console.log("can't create file!");
+            }
+          } catch(err){
+            console.error(err);
+          }
+        }else{
+          
+          console.log('vermin directory already exists!'); 
         }
-        console.log("file was saved"); 
-      });
-      next();   
+       
+         
+        console.log(curTourDirName + " already exists!");
+      }
+
+        
+
+
+      
+
+
+      // //fs.mkdirSync('uploads3');
+      // fs.writeFile('./uploads/testPNG4.png', canvas164String, {encoding: 'base64'}, function(err) {
+      //   if(err){
+      //     return console.log(err);
+      //   }
+      //   console.log("file was saved"); 
+      // });
+      // next();   
   });
 
   //double colon indicates a variable. 

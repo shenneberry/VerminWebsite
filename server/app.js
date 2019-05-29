@@ -3,11 +3,12 @@ const express = require('express');
 const app = express();//creates an instance of the express object
 //declared above.
 
-const cronJob = require('cron').CronJob;  
+ 
 
 //error handler logging middlewar for HTTP requests
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 const path = require('path');
 
 const mongoose = require('mongoose');
@@ -21,7 +22,8 @@ mongoose.Promise = global.Promise;
 
 
 //RouterModules
-const verminModule = require('./api/routes/verminRouter'); 
+const verminRouter = require('./api/routes/verminRouter'); 
+//const adminRouter = require('./api/routes/adminRouter');
 
 mongoose.connect('mongodb://localhost:27017/testdb', {useNewUrlParser: true});
 
@@ -69,6 +71,7 @@ app.use(bodyParser.urlencoded({ extended: true}));
 //parses the body of a JSON file
 app.use(bodyParser.json());
 //sets up a static file directory path to refer to for index.html to be automatically loaded 
+app.use(cookieParser());
 
 
 
@@ -79,7 +82,8 @@ app.use(express.static(path.join(__dirname, '..', 'client')));
 //makes sure any requests with /uploads have public access to the uploads folder
 // app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 //makes sure this url is sent to be processed by submitVermin.js
-app.use('/vermin', verminModule, express.static(path.join(__dirname, 'uploads')));
+app.use('/vermin', verminRouter, express.static(path.join(__dirname, 'vermin-pics')));
+//app.use('/admin', adminRouter); 
 
 //error to be sent to error handler function below if
 // request makes it past all specified url handlers above.
@@ -100,5 +104,7 @@ app.use((error, req, res, next) => {
       }
     });
 });
+
+
 
 module.exports = app; 

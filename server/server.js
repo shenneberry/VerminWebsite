@@ -24,7 +24,7 @@ const cronJob = require('cron').CronJob;
 //     });
 //   });
 
- new cronJob('*/5 * * * * *', function(){
-     console.log("starting cron");
+//  new cronJob('*/5 * * * * *', function(){
+//      console.log("starting cron");
 
- }, null, true, 'America/Los_Angeles'); 
+//  }, null, true, 'America/Los_Angeles'); 
