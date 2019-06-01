@@ -24,8 +24,6 @@
     "nodemon": "^1.19.1"
   },
   "dependencies": {
-    "admin-bro": "^0.8.8",
-    "admin-bro-expressjs": "^0.1.7",
     "canvas": "^2.5.0",
     "cookie-parser": "^1.4.4",
     "core-js": "^3.1.3",
