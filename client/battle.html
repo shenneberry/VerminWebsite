@@ -10,7 +10,7 @@
             Just display it without shrinking because our content will rearrange itself depending upon the size of the viewport.-->
         <!--font families-->
         <link href="https://fonts.googleapis.com/css?family=Cinzel|Cormorant+Unicase" rel="stylesheet">    
-        <link rel="stylesheet" href="adminStyles.css">
+        <link rel="stylesheet" href="battleStyles.css">
         <script src="/socket.io/socket.io.js"></script>
         <!--pulls client side socket.io script from this url-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -18,6 +18,8 @@
     </head>
     <body>
         <h1>Battle Page</h1>
+        <canvas id="evo1Canvas" width="800" height="500">
+        </canvas>
         
         <script>
             //makes sure that the whole document is read 
@@ -29,7 +31,8 @@
                         $.ajax({
                             url: Url,
                             type: "GET",
-                            success: function(result){
+                            complete: function(result){
+                                const JSONData = result; 
                                 console.log(result)
                                 alert('worked'); 
                             },

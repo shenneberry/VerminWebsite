@@ -12,8 +12,8 @@
     <script src="https://unpkg.com/vanilla-picker@2"></script>
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> -->
 </head>
-<body>
-    <div class="main-col">
+<body id="body">
+    <div id="main-col">
         <div>
                 <h1 id="intro">Close your eyes, stare deep into your soul</h1>
                 <p id="dotDotDot">. . . . . .</p>
@@ -30,7 +30,10 @@
                 </td>
             </tr>
             <h2>Evolution I</h2>
-            <canvas id="evo1Canvas" width="800" height="500">
+            <div id="sketch">
+                    <canvas id="evo1Canvas" width="800" height="500">
+            </div>
+            
             </canvas>
             <fieldset>
                 <legend>Stats</legend>

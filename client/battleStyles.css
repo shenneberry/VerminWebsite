@@ -1,0 +1,81 @@
+
+body{
+    background-image: url('img/buyMyCardsCrop2.png');
+    background-repeat: no-repeat;  
+    text-align: center; 
+    background-color: black; 
+    background-position: center; 
+    background-size: contain;
+    background-attachment: fixed;
+    color: white;
+    width: 100%;
+}
+
+
+.wrapper{
+     position: fixed;
+     top: 50%;
+     left: 50%; 
+     transform: translate(-50%, -50%);
+     /* display: none; */
+}
+
+h1{
+    font-family: 'Cormorant Unicase', serif;
+    color: white;
+}
+
+h2{
+    font-family: 'Cinzel', serif;
+    color: white;
+}
+
+#dotDotDot{
+    font-family: 'Cinzel', serif;
+    color: white; 
+    font-size: 50px;
+}
+
+canvas{
+    border: 3px solid red; 
+    width: 800px; 
+    height: 600px;
+    background-color: white;
+}
+
+fieldset{
+    border: none; 
+}
+
+table{
+   margin-left: auto;
+   margin-right: auto; 
+   padding-left: 250px;
+}
+
+legend{
+    font-family: 'Cinzel', serif;
+    color: white; 
+    font-size: 30px;
+}
+
+td{
+    font-family: 'Cinzel', serif;
+    color: white; 
+}
+
+.main-col{
+    float: left;
+    width: 70%;
+}
+
+.sidebar{
+    background: #333;
+    color: #000000; 
+    float: right;
+    width: 30%;
+}
+
+
+
+

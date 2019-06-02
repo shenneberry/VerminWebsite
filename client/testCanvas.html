@@ -1,0 +1,57 @@
+<link rel="stylesheet" href="testCanvas.css">
+<canvas id="evo1Canvas" ></canvas>
+<script>
+window.addEventListener("load", () => {
+     
+	 const evo1Canvas = document.querySelector("#evo1Canvas");
+	 const evo1Ctx = evo1Canvas.getContext("2d");
+	 evo1Ctx.canvas.width = window.innerWidth;
+	 evo1Ctx.canvas.height = window.innerHeight;
+	 let painting = false; 
+	 
+	 evo1Canvas.addEventListener("mousedown", startPosition);
+	 evo1Canvas.addEventListener("mouseup", finishedPosition);
+	 evo1Canvas.addEventListener("mousemove", function(evt){
+		 var mousePos = getMousePos(evo1Canvas, evt); 
+		 //assigns returned variables from the getMousePos
+		 var posx = mousePos.x; 
+		 var posy = mousePos.y;
+		 draw(evo1Canvas, posx, posy); 
+	 }); 
+ 
+	 function startPosition(e){
+ 
+		 painting = true;
+		 draw(e); 
+	 }
+	 function finishedPosition(){
+		 painting = false;
+		 evo1Ctx.beginPath();
+	 }
+ 
+	 function draw(e, posx, posy){
+		 if(!painting) return;
+		 var canvasColorPicker = document.getElementById("canvasColorPicker");
+		 evo1Ctx.lineWidth = 10;
+		 evo1Ctx.lineCap = 'round';
+		 evo1Ctx.lineTo(posx, posy);//e.clientX, e.clientY);
+		 evo1Ctx.strokeStyle = "FF0000";//canvasColorPicker.value; 
+		 evo1Ctx.stroke();
+		 evo1Ctx.beginPath();
+		 evo1Ctx.moveTo(posx, posy);//e.clientX, e.clientY);
+	 }
+ 
+	 function getMousePos(evo1Canvas, evt){
+		 //returns the size of an element and its
+		 // position related to the viewport
+		 // in this case, the canvas
+		 var rect = evo1Canvas.getBoundingClientRect();
+		 return{
+			 x:evt.clientX- rect.left, 
+			 y:evt.clientY- rect.top
+		 }
+	 }
+ 
+	 
+ });
+</script>
