@@ -24,6 +24,7 @@ mongoose.Promise = global.Promise;
 //RouterModules
 const verminRouter = require('./api/routes/verminRouter'); 
 const adminRouter = require('./api/routes/adminRouter');
+const battleRouter = require('./api/routes/battleRouter');
 
 mongoose.connect('mongodb://localhost:27017/testdb', {useNewUrlParser: true});
 
@@ -84,6 +85,7 @@ app.use(express.static(path.join(__dirname, '..', 'client')));
 //makes sure this url is sent to be processed by submitVermin.js
 app.use('/vermin', verminRouter, express.static(path.join(__dirname, 'vermin-pics')));
 app.use('/admin', adminRouter); 
+app.use('/battle', battleRouter); 
 
 //error to be sent to error handler function below if
 // request makes it past all specified url handlers above.
