@@ -17,14 +17,30 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     </head>
     <body>
-        <h1>Admin Page</h1>
-        <a href="battle.html" id="startBattle">Start Battle</a>
+        <h1>Battle Page</h1>
+        
         <script>
             //makes sure that the whole document is read 
-            // before loading script
-            $("document").ready(function(){
-              
-            }); 
+            // before loading 
+            window.onload = function(){
+                    
+                    $("document").ready(function(){
+                        const Url = 'http://localhost:4000/battle.html';
+                        $.ajax({
+                            url: Url,
+                            type: "GET",
+                            success: function(result){
+                                console.log(result)
+                                alert('worked'); 
+                            },
+                            error:function(error){
+                                console.log('Error ${error}')
+                                alert("didn't work"); 
+                            }
+                        }); 
+                    }); 
+                }
+            
         </script>
     </body>
 </html>
