@@ -5,8 +5,8 @@ mongoose.Promise = global.Promise;
 //Schema for Vermin with all evolutions
 var team1Schema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    vermin1: {
-        posNum: 1,
+    vermin3: {
+        posNum: 3,
         name: {type: String, required: true},
         evoImage: {type: String, required: true},
         lifes: {type: Number, required: true},
@@ -15,8 +15,8 @@ var team1Schema = mongoose.Schema({
         guard: {type: Number, required: true},
         fast: {type: Number, required: true}
     },
-    vermin2:{
-        posNum: 2,
+    vermin4:{
+        posNum: 4,
         name: {type: String, required: true},
         evoImage: {type: String, required: true},
         lifes: {type: Number, required: true},
@@ -29,4 +29,4 @@ var team1Schema = mongoose.Schema({
 }); 
 
 
-module.exports = mongoose.model('Team1', team1Schema);
+module.exports = mongoose.model('Team2', team1Schema);

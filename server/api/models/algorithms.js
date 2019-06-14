@@ -14,7 +14,10 @@ var algorithmsSchema = mongoose.Schema({
     maxNextTurnFast: {type: Number, required: true},
     calcNextTurnFast: {type: Number, required: true},
     turnOrder: {
-        turn1: 
+         turn1: 1,
+         turn2: 2,
+         turn3: 3,
+         turn4: 4
     },
     calcHitOrMiss: {type: Number, required: true},
     //start needed for calcHitOrMiss

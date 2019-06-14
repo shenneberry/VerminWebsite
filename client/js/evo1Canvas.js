@@ -100,18 +100,14 @@ window.addEventListener("load", () => {
     const evo1Canvas = document.querySelector("#evo1Canvas");
     const evo1Ctx = evo1Canvas.getContext("2d");
 	let painting = false; 
-	var mouse = {x: 0, y: 0};
+	
 	evo1Canvas.addEventListener("mousedown", startPosition);
     evo1Canvas.addEventListener("mouseup", finishedPosition);
     evo1Canvas.addEventListener("mousemove", function(evt){
-        // var mousePos = getMousePos(evo1Canvas, evt); 
-        // //assigns returned variables from the getMousePos
-        
-		mouse.x = evt.pageX - this.offsetLeft;
-		mouse.y = evt.pageY - this.offsetTop;
-		  
-		var posx = mousePos.x; 
-		var posy = mousePos.y;
+        var mousePos = getMousePos(evo1Canvas, evt); 
+        //assigns returned variables from the getMousePos
+        var posx = mousePos.x; 
+        var posy = mousePos.y;
         draw(evo1Canvas, posx, posy); 
     }); 
 
